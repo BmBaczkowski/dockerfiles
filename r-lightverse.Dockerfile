@@ -1,38 +1,30 @@
 # base R + tex & publishing-related package
 FROM rocker/r-ver:4.2.2
+RUN /rocker_scripts/install_verse.sh
 
-# install devtools 
-RUN Rscript -e 'install.packages("devtools")'
+# install pandoc
+RUN apt-get update && apt-get install -y pandoc
 
-# update repos and install vim
-RUN apt-get update && apt-get install -y \
-  vim \
-  pandoc \
-  libxt6 \
-  libfile-find-rule-perl-perl
+# copy set-up files
+COPY vimrc /root/.vimrc
+COPY tex-pkgs.txt /
+COPY install_tex_pkgs.R /
 
-# install tiny TeX
-RUN Rscript -e 'devtools::install_version("tinytex", version="0.43")'
-RUN Rscript -e 'tinytex::install_tinytex(bundle="TinyTeX-1", version="v2022.12")'
+# install tex pkgs
+RUN Rscript install_tex_pkgs.R  
 
-# install rmarkdown
-RUN Rscript -e 'devtools::install_version("rmarkdown", version="2.19")'
+# add Sweave pkg 
+RUN Rscript -e 'tinytex::r_texmf(action = "add")'
 
-# install bookdown
-RUN Rscript -e 'devtools::install_version("bookdown", version="0.31")'
-
-# install Sweave
-RUN Rscript -e 'tinytex::tlmgr_install("Sweave")'
-
-# setup .vimrc 
-COPY vimrc ./root/.vimrc
-
+# create a working directory to mount local dirs
 WORKDIR /docker
 
-# add script to extract citations
-COPY getcitations.R ./docker/
+# copy minimal working tex example
+COPY minimal.tex /docker/
+COPY refs.bib /docker/
+COPY run_minimal_tex.R /docker/
 
-
-
+# to extract citations
+COPY getcitations.R /docker/
 
 

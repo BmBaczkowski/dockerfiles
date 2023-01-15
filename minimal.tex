@@ -1,0 +1,60 @@
+\documentclass[11pt, a4paper, onecolumn]{article}
+
+% get keyword command
+\providecommand{\keywords}[1]
+{
+  \small	
+  \textbf{\textit{Keywords:}} #1
+}
+
+% use Atkinson Hyperlegible Font (sans serif)
+\usepackage[sfdefault]{atkinson}
+
+% add hyperlinks
+\usepackage[hidelinks]{hyperref}
+
+
+% add line numbering
+\usepackage{lineno}
+\linenumbers
+
+% add author affiliations
+\usepackage{authblk}
+
+% manage bibliography
+\usepackage[backend=biber, style=apa]{biblatex}
+
+% add bibliography file 
+\addbibresource{refs.bib}
+
+% make front page
+\title{A random walk in \LaTeX}
+\author[1]{Alison Carefully}
+\author[2, 3]{Ivor Question}
+\affil[1]{Department of Mathematics, University X}
+\affil[2]{Department of Biology, University Y}
+\affil[3]{Department of ddsBiology, University Y}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+something
+\end{abstract}
+\keywords{one, two, three}
+
+\section*{Introduction}
+
+Hello World! \textcite{einstein}
+dsvsklv \parencite{einstein}
+
+
+\section*{Second section}
+\subsection*{Subsection}
+
+
+\printbibliography
+
+
+\end{document}
