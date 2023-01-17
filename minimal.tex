@@ -1,4 +1,8 @@
 \documentclass[11pt, a4paper, onecolumn]{article}
+\usepackage[english]{babel}
+
+% generate dummy text
+\usepackage{blindtext}
 
 % get keyword command
 \providecommand{\keywords}[1]
@@ -7,52 +11,104 @@
   \textbf{\textit{Keywords:}} #1
 }
 
+% set spacing
+\usepackage{setspace}
+% \doublespacing
+\onehalfspacing
+
 % use Atkinson Hyperlegible Font (sans serif)
 \usepackage[sfdefault]{atkinson}
 
 % add hyperlinks
 \usepackage[hidelinks]{hyperref}
 
+% get last page number
+\usepackage{lastpage}
 
 % add line numbering
 \usepackage{lineno}
 \linenumbers
 
+% define date
+\usepackage[ddmmyyyy]{datetime}
+\renewcommand{\dateseparator}{-}
+
 % add author affiliations
 \usepackage{authblk}
 
+% add orcid link
+\usepackage{orcidlink}
+
 % manage bibliography
 \usepackage[backend=biber, style=apa]{biblatex}
+\usepackage{csquotes}
 
 % add bibliography file 
 \addbibresource{refs.bib}
 
+% set font size for affiliations
+% \renewcommand\Authfont{\fontsize{12}{14.4}\selectfont}
+\renewcommand\Affilfont{\fontsize{9}{10.8}\itshape}
+
+% to define footers and headers
+\usepackage{fancyhdr}
+
+% make the footnote for correspondence
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+
 % make front page
-\title{A random walk in \LaTeX}
-\author[1]{Alison Carefully}
-\author[2, 3]{Ivor Question}
+\title{Minimal working example in \LaTeX}
+\author[1]{Firstname Lastname\orcidlink{0000-0000-0000-0000}}
+\author[2, 3]{Firstname Lastname\orcidlink{0000-0000-0000-0000}}
 \affil[1]{Department of Mathematics, University X}
 \affil[2]{Department of Biology, University Y}
-\affil[3]{Department of ddsBiology, University Y}
+\affil[3]{Department of Biology, University Z}
+%\date{\vspace{-5ex}}
 \date{\today}
 
+% set up footer and header
+\pagestyle{fancy}
+\setlength{\headheight}{14pt} % adjust the headheight
+\fancyhead{} % clear all header fields
+\fancyhead[L]{Minimal working example}
+\fancyfoot{} % clear all footer fields
+\fancyfoot[R]{Author et. al. | \date{\today} | \thepage\ of \pageref{LastPage}}
+\fancypagestyle{firstpage}{
+  \lhead{RUNNING HEAD: Minimal working example}
+  \rfoot{}
+ \renewcommand{\footrulewidth}{0pt} % Default \footrulewidth is 0pt
+}
+% \renewcommand{\headrulewidth}{0.4pt}% Default \headrulewidth is 0.4pt
+\renewcommand{\footrulewidth}{0.4pt}% Default \footrulewidth is 0pt
+
 \begin{document}
+
 \maketitle
+\thispagestyle{firstpage}
+\blfootnote{Correspondance: \href{mailto:me@example.com}{me@example.com}}
 
 \begin{abstract}
-something
+\blindtext[1]
 \end{abstract}
 \keywords{one, two, three}
 
+\newpage
+
 \section*{Introduction}
 
-Hello World! \textcite{einstein}
-dsvsklv \parencite{einstein}
+\blindtext[1] \textcite{einstein}
+\blindtext[2]\parencite{einstein}
 
 
 \section*{Second section}
 \subsection*{Subsection}
 
+\blindtext[3]
 
 \printbibliography
 
