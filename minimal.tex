@@ -39,9 +39,11 @@
 % add orcid link
 \usepackage{orcidlink}
 
-% manage bibliography
-\usepackage[backend=biber, style=apa]{biblatex}
-\usepackage{csquotes}
+% manage bibliography: use either biblatex or cite-proc (csl-styles)
+% \usepackage[backend=biber, style=apa]{biblatex}
+% \usepackage{csquotes}
+\usepackage{citation-style-language}
+\cslsetup{style=trends-journals}
 
 % add bibliography file 
 \addbibresource{refs.bib}
@@ -101,7 +103,7 @@
 
 \section*{Introduction}
 
-\blindtext[1] \textcite{einstein}
+\blindtext[1]\cite{einstein}
 \blindtext[2]\parencite{einstein}
 
 

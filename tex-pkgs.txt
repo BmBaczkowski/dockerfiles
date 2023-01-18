@@ -20,6 +20,7 @@ bigintcalc
 bitset
 blindtext
 booktabs
+citation-style-language
 cite
 cm
 csquotes

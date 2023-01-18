@@ -1,1 +1,1 @@
-tinytex::xelatex("minimal.tex", bib_engine="biber", clean=FALSE)
+tinytex::lualatex("minimal.tex", bib_engine="biber", clean=FALSE)
