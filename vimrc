@@ -92,5 +92,6 @@ set shiftwidth=4
 " Sets the number of columns for a TAB
 set softtabstop=4
 
-" Expand TABs to spaces
-set expandtab
+" Show tabs 
+set list
+set listchars=tab:>-

@@ -20,6 +20,8 @@ bigintcalc
 bitset
 blindtext
 booktabs
+caption
+changes
 citation-style-language
 cite
 cm
@@ -107,10 +109,12 @@ rerunfilecheck
 selnolig
 setspace
 stringenc
+tcolorbox
 tex
 tex-ini-files
 times
 tipa
+tocloft
 tools
 unicode-data
 unicode-math
