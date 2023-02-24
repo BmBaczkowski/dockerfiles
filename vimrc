@@ -95,3 +95,8 @@ set softtabstop=4
 " Show tabs 
 set list
 set listchars=tab:>-
+
+" Mark line length with a light grey color
+set colorcolumn=80
+highlight ColorColumn ctermbg=7
+
