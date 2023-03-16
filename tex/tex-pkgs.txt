@@ -25,12 +25,14 @@ changes
 citation-style-language
 cite
 cm
+colortbl
 csquotes
 ctablestack
 datetime
 dehyph
 dvipdfmx
 dvips
+easyreview
 ec
 epstopdf-pkg
 etex
@@ -108,6 +110,7 @@ refcount
 rerunfilecheck
 selnolig
 setspace
+soul
 stringenc
 tcolorbox
 tex
@@ -115,6 +118,7 @@ tex-ini-files
 times
 tipa
 tocloft
+todonotes
 tools
 unicode-data
 unicode-math
