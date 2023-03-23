@@ -16,8 +16,11 @@ WORKDIR /JAGS-4.3.1
 RUN ./configure
 RUN make && make install
 
-# install rjags 
-RUN apt-get update && apt-get -y install r-cran-rjags
+# Set the R_LIBS_USER environment variable
+ENV R_LIBS_USER=/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library
+
+# Install the r-cran-rjags package
+RUN apt-get update && apt-get install -y r-cran-rjags
 
 # add Sweave pkg 
 RUN Rscript -e 'tinytex::r_texmf(action = "add")'
