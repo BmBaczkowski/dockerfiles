@@ -22,6 +22,13 @@ ENV R_LIBS_USER=/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R
 # Install the r-cran-rjags package
 RUN apt-get update && apt-get install -y r-cran-rjags
 
+# Install R2jags wrapper of rjags
+RUN install2.r R2jags
+
+# Install additional diagnostics packages
+RUN install2.r MCMCvis
+RUN install2.r bayesplot
+ 
 # add Sweave pkg 
 RUN Rscript -e 'tinytex::r_texmf(action = "add")'
 
