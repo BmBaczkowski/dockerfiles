@@ -1,0 +1,13 @@
+bayesplot
+bookdown
+easystats
+extraDistr
+ggeffects
+knitr
+lme4
+MASS
+MCMCvis
+optparse
+tidyverse
+tinytex
+txtplot
