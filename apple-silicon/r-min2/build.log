@@ -1,0 +1,1053 @@
+STEP 1/12: FROM rocker/r-ver:4.2.3
+STEP 2/12: RUN R -q -e 'install.packages("pak", repos=sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+> install.packages("pak", repos=sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))
+Installing package into ‘/usr/local/lib/R/site-library’
+(as ‘lib’ is unspecified)
+trying URL 'https://r-lib.github.io/p/pak/stable/source/linux-gnu/aarch64/src/contrib/../../../../../linux/aarch64/pak_0.7.0_R-4-2_aarch64-linux.tar.gz'
+Content type 'application/gzip' length 8401152 bytes (8.0 MB)
+==================================================
+downloaded 8.0 MB
+
+* installing *binary* package ‘pak’ ...
+* DONE (pak)
+
+The downloaded source packages are in
+	‘/tmp/RtmpqdXCM9/downloaded_packages’
+> 
+> 
+--> 414de101dc8e
+STEP 3/12: COPY r-pkgs.txt /tmp/packages.txt
+--> 966d9e363160
+STEP 4/12: RUN R -q -e 'pak::pkg_install(pkg=readLines("/tmp/packages.txt"))'
+> pak::pkg_install(pkg=readLines("/tmp/packages.txt"))
+
+✔ Updated metadata database: 2.24 MB in 8 files.
+
+ℹ Updating metadata database
+✔ Updating metadata database ... done
+
+ 
+→ Will install 101 packages.
+→ Will update 1 package.
+→ Will download 102 CRAN packages (80.02 MB).
++ base64enc               0.1-3     [bld][cmp][dl] (7.83 kB)
++ bayestestR              0.13.1    [bld][dl] (896.89 kB)
++ bit                     4.0.5     [bld][cmp][dl] (827.75 kB)
++ bit64                   4.0.5     [bld][cmp][dl] (135.09 kB)
++ bookdown                0.33      [bld][dl] (859.01 kB) + ✖ pandoc
++ brio                    1.1.3     [bld][cmp][dl] (12.63 kB)
++ bslib                   0.4.2     [bld][dl] (6.06 MB)
++ cachem                  1.0.7     [bld][cmp][dl] (26.51 kB)
++ callr                   3.7.3     [bld][dl] (97.81 kB)
++ cli                     3.6.1     [bld][cmp][dl] (567.29 kB)
++ clipr                   0.8.0     [bld][dl] (21.90 kB)
++ colorspace              2.1-0     [bld][cmp][dl] (2.12 MB)
++ correlation             0.8.4     [bld][dl] (1.09 MB)
++ cpp11                   0.4.3     [bld][dl] (300.89 kB)
++ crayon                  1.5.2     [bld][dl] (40.57 kB)
++ datawizard              0.7.1     [bld][dl] (672.66 kB)
++ desc                    1.4.2     [bld][dl] (79.25 kB)
++ diffobj                 0.3.5     [bld][cmp][dl] (479.28 kB)
++ digest                  0.6.31    [bld][cmp][dl] (177.80 kB)
++ dplyr                   1.1.1     [bld][cmp][dl] (1.21 MB)
++ easystats               0.6.0     [bld][dl] (1.75 MB)
++ effectsize              0.8.3     [bld][dl] (344.84 kB)
++ ellipsis                0.3.2     [bld][cmp][dl] (8.07 kB)
++ evaluate                0.20      [bld][dl] (28.35 kB)
++ extraDistr              1.9.1     [bld][cmp][dl] (147.89 kB)
++ fansi                   1.0.4     [bld][cmp][dl] (482.38 kB)
++ farver                  2.1.1     [bld][cmp][dl] (1.27 MB)
++ fastmap                 1.1.1     [bld][cmp][dl] (46.41 kB)
++ fontawesome             0.5.1     [bld][dl] (1.28 MB)
++ forcats                 1.0.0     [bld][dl] (294.18 kB)
++ fs                      1.6.1     [bld][cmp][dl] (1.19 MB) + ✔ make
++ generics                0.1.3     [bld][dl] (172.20 kB)
++ getopt                  1.20.3    [bld][dl] (23.13 kB)
++ ggplot2                 3.4.2     [bld][dl] (3.16 MB)
++ glue                    1.6.2     [bld][cmp][dl] (106.51 kB)
++ gtable                  0.3.3     [bld][dl] (130.10 kB)
++ highr                   0.10      [bld][dl] (15.08 kB)
++ hms                     1.1.3     [bld][dl] (43.38 kB)
++ htmltools               0.5.5     [bld][cmp][dl] (134.68 kB)
++ insight                 0.19.1    [bld][dl] (939.20 kB)
++ isoband                 0.2.7     [bld][cmp][dl] (1.59 MB)
++ janeaustenr             1.0.0     [bld][dl] (1.17 MB)
++ jquerylib               0.1.4     [bld][dl] (520.21 kB)
++ jsonlite                1.8.4     [bld][cmp][dl] (1.05 MB)
++ knitr                   1.42      [bld][dl] (898.76 kB) + ✖ pandoc
++ labeling                0.4.2     [bld][dl] (10.17 kB)
++ lifecycle               1.0.3     [bld][dl] (107.66 kB)
++ lme4                    1.1-32    [bld][cmp][dl] (2.94 MB)
++ magrittr                2.0.3     [bld][cmp][dl] (267.07 kB)
++ MASS         7.3-58.2 → 7.3-58.3  [bld][cmp][dl] (561.53 kB)
++ memoise                 2.0.1     [bld][dl] (17.85 kB)
++ mime                    0.12      [bld][cmp][dl] (12.56 kB)
++ minqa                   1.2.5     [bld][cmp][dl] (54.49 kB) + ✔ make
++ modelbased              0.8.6     [bld][dl] (1.46 MB)
++ munsell                 0.5.0     [bld][dl] (182.65 kB)
++ nloptr                  2.0.3     [bld][cmp][dl] (2.22 MB) + ✖ cmake
++ optparse                1.7.3     [bld][dl] (41.71 kB)
++ parameters              0.21.0    [bld][dl] (669.69 kB)
++ performance             0.10.3    [bld][dl] (2.10 MB)
++ pillar                  1.9.0     [bld][dl] (444.53 kB)
++ pkgconfig               2.0.3     [bld][dl] (6.08 kB)
++ pkgload                 1.3.2     [bld][dl] (77.93 kB)
++ praise                  1.0.0     [bld][dl] (6.10 kB)
++ prettyunits             1.1.1     [bld][dl] (97.50 kB)
++ processx                3.8.1     [bld][cmp][dl] (163.56 kB)
++ progress                1.2.2     [bld][dl] (29.51 kB)
++ ps                      1.7.5     [bld][cmp][dl] (129.21 kB)
++ purrr                   1.0.1     [bld][cmp][dl] (220.87 kB)
++ R6                      2.5.1     [bld][dl] (63.42 kB)
++ rappdirs                0.3.3     [bld][cmp][dl] (12.29 kB)
++ RColorBrewer            1.1-3     [bld][dl] (11.64 kB)
++ Rcpp                    1.0.10    [bld][cmp][dl] (2.99 MB)
++ RcppEigen               0.3.3.9.3 [bld][cmp][dl] (1.45 MB)
++ readr                   2.1.4     [bld][cmp][dl] (298.08 kB)
++ rematch2                2.1.2     [bld][dl] (13.37 kB)
++ report                  0.5.7     [bld][dl] (1.88 MB)
++ rlang                   1.1.0     [bld][cmp][dl] (763.52 kB)
++ rmarkdown               2.21      [bld][dl] (2.19 MB) + ✖ pandoc
++ rprojroot               2.0.3     [bld][dl] (59.95 kB)
++ sass                    0.4.5     [bld][cmp][dl] (3.03 MB) + ✔ make
++ scales                  1.2.1     [bld][dl] (270.61 kB)
++ see                     0.7.5     [bld][dl] (122.29 kB)
++ SnowballC               0.7.0     [bld][cmp][dl] (405.55 kB)
++ stringi                 1.7.12    [bld][cmp][dl] (11.92 MB) + ✖ libicu-dev
++ stringr                 1.5.0     [bld][dl] (176.60 kB)
++ testthat                3.1.7     [bld][cmp][dl] (739.50 kB)
++ tibble                  3.2.1     [bld][cmp][dl] (565.98 kB)
++ tidyr                   1.3.0     [bld][cmp][dl] (823.55 kB)
++ tidyselect              1.2.0     [bld][dl] (101.50 kB)
++ tidytext                0.4.1     [bld][dl] (3.14 MB)
++ tinytex                 0.45      [bld][dl] (34.20 kB)
++ tokenizers              0.3.0     [bld][cmp][dl] (458.88 kB)
++ txtplot                 1.0-4     [bld][dl] (11.63 kB)
++ tzdb                    0.3.0     [bld][cmp][dl] (586.33 kB)
++ utf8                    1.2.3     [bld][cmp][dl] (241.08 kB)
++ vctrs                   0.6.2     [bld][cmp][dl] (968.45 kB)
++ viridisLite             0.4.1     [bld][dl] (1.27 MB)
++ vroom                   1.6.1     [bld][cmp][dl] (750.20 kB)
++ waldo                   0.4.0     [bld][dl] (39.71 kB)
++ withr                   2.5.0     [bld][dl] (102.32 kB)
++ xfun                    0.38      [bld][cmp][dl] (135.72 kB)
++ yaml                    2.3.7     [bld][cmp][dl] (94.33 kB)
+→ Will install 3 system packages:
++ cmake       - nloptr                    
++ libicu-dev  - stringi                   
++ pandoc      - bookdown, rmarkdown, knitr
+ℹ Getting 102 pkgs (80.02 MB)
+✔ Got base64enc 0.1-3 (source) (7.84 kB)
+✔ Got R6 2.5.1 (source) (64.15 kB)
+✔ Got bookdown 0.33 (source) (861.53 kB)
+✔ Got ellipsis 0.3.2 (source) (8.13 kB)
+✔ Got digest 0.6.31 (source) (163.83 kB)
+✔ Got evaluate 0.20 (source) (26.45 kB)
+✔ Got glue 1.6.2 (source) (107.66 kB)
+✔ Got fontawesome 0.5.1 (source) (1.27 MB)
+✔ Got xfun 0.38 (source) (134.19 kB)
+✔ Got jsonlite 1.8.4 (source) (1.05 MB)
+✔ Got jquerylib 0.1.4 (source) (520.20 kB)
+✔ Got mime 0.12 (source) (12.60 kB)
+✔ Got fansi 1.0.4 (source) (481.76 kB)
+✔ Got htmltools 0.5.5 (source) (132.16 kB)
+✔ Got RColorBrewer 1.1-3 (source) (11.70 kB)
+✔ Got rlang 1.1.0 (source) (758.70 kB)
+✔ Got withr 2.5.0 (source) (102.92 kB)
+✔ Got datawizard 0.7.1 (source) (482.02 kB)
+✔ Got effectsize 0.8.3 (source) (339.17 kB)
+✔ Got see 0.7.5 (source) (111.86 kB)
+✔ Got dplyr 1.1.1 (source) (1.08 MB)
+✔ Got parameters 0.21.0 (source) (658.57 kB)
+✔ Got rmarkdown 2.21 (source) (2.13 MB)
+✔ Got crayon 1.5.2 (source) (40.75 kB)
+✔ Got modelbased 0.8.6 (source) (1.47 MB)
+✔ Got performance 0.10.3 (source) (2.11 MB)
+✔ Got praise 1.0.0 (source) (6.10 kB)
+✔ Got RcppEigen 0.3.3.9.3 (source) (1.47 MB)
+✔ Got testthat 3.1.7 (source) (706.82 kB)
+✔ Got forcats 1.0.0 (source) (296.12 kB)
+✔ Got rematch2 2.1.2 (source) (13.44 kB)
+✔ Got ps 1.7.5 (source) (129.78 kB)
+✔ Got scales 1.2.1 (source) (272.40 kB)
+✔ Got getopt 1.20.3 (source) (18.68 kB)
+✔ Got cpp11 0.4.3 (source) (305.11 kB)
+✔ Got bit 4.0.5 (source) (828.76 kB)
+✔ Got vroom 1.6.1 (source) (718.76 kB)
+✔ Got nloptr 2.0.3 (source) (2.22 MB)
+✔ Got tokenizers 0.3.0 (source) (457.75 kB)
+✔ Got janeaustenr 1.0.0 (source) (1.17 MB)
+✔ Got tibble 3.2.1 (source) (565.72 kB)
+✔ Got txtplot 1.0-4 (source) (11.64 kB)
+✔ Got SnowballC 0.7.0 (source) (403.95 kB)
+✔ Got highr 0.10 (source) (15.20 kB)
+✔ Got rappdirs 0.3.3 (source) (12.33 kB)
+✔ Got lifecycle 1.0.3 (source) (107.45 kB)
+✔ Got lme4 1.1-32 (source) (2.94 MB)
+✔ Got pkgconfig 2.0.3 (source) (6.11 kB)
+✔ Got generics 0.1.3 (source) (173.65 kB)
+✔ Got tidyselect 1.2.0 (source) (101.48 kB)
+✔ Got fs 1.6.1 (source) (1.19 MB)
+✔ Got gtable 0.3.3 (source) (132.02 kB)
+✔ Got utf8 1.2.3 (source) (240.04 kB)
+✔ Got easystats 0.6.0 (source) (903.73 kB)
+✔ Got brio 1.1.3 (source) (12.70 kB)
+✔ Got minqa 1.2.5 (source) (55.00 kB)
+✔ Got rprojroot 2.0.3 (source) (61.65 kB)
+✔ Got stringi 1.7.12 (source) (7.61 MB)
+✔ Got processx 3.8.1 (source) (164.64 kB)
+✔ Got clipr 0.8.0 (source) (21.95 kB)
+✔ Got waldo 0.4.0 (source) (37.68 kB)
+✔ Got isoband 0.2.7 (source) (1.59 MB)
+✔ Got purrr 1.0.1 (source) (218.20 kB)
+✔ Got extraDistr 1.9.1 (source) (147.12 kB)
+✔ Got colorspace 2.1-0 (source) (2.11 MB)
+✔ Got progress 1.2.2 (source) (29.75 kB)
+✔ Got readr 2.1.4 (source) (293.97 kB)
+✔ Got stringr 1.5.0 (source) (175.89 kB)
+✔ Got ggplot2 3.4.2 (source) (3.14 MB)
+✔ Got yaml 2.3.7 (source) (94.60 kB)
+✔ Got labeling 0.4.2 (source) (10.24 kB)
+✔ Got magrittr 2.0.3 (source) (267.20 kB)
+✔ Got report 0.5.7 (source) (1.88 MB)
+✔ Got farver 2.1.1 (source) (1.27 MB)
+✔ Got prettyunits 1.1.1 (source) (10.38 kB)
+✔ Got fastmap 1.1.1 (source) (46.84 kB)
+✔ Got viridisLite 0.4.1 (source) (1.27 MB)
+✔ Got tidytext 0.4.1 (source) (3.14 MB)
+✔ Got memoise 2.0.1 (source) (17.88 kB)
+✔ Got pkgload 1.3.2 (source) (76.29 kB)
+✔ Got knitr 1.42 (source) (889.35 kB)
+✔ Got diffobj 0.3.5 (source) (477.31 kB)
+✔ Got MASS 7.3-58.3 (source) (516.48 kB)
+✔ Got tinytex 0.45 (source) (33.41 kB)
+✔ Got cli 3.6.1 (source) (565.37 kB)
+✔ Got desc 1.4.2 (source) (79.50 kB)
+✔ Got munsell 0.5.0 (source) (181.72 kB)
+✔ Got optparse 1.7.3 (source) (41.93 kB)
+✔ Got hms 1.1.3 (source) (44.41 kB)
+✔ Got tzdb 0.3.0 (source) (569.92 kB)
+✔ Got bayestestR 0.13.1 (source) (911.05 kB)
+✔ Got bit64 4.0.5 (source) (135.85 kB)
+✔ Got tidyr 1.3.0 (source) (818.82 kB)
+✔ Got Rcpp 1.0.10 (source) (2.94 MB)
+✔ Got bslib 0.4.2 (source) (4.83 MB)
+✔ Got pillar 1.9.0 (source) (441.98 kB)
+✔ Got callr 3.7.3 (source) (98.16 kB)
+✔ Got correlation 0.8.4 (source) (1.10 MB)
+✔ Got insight 0.19.1 (source) (924.72 kB)
+✔ Got cachem 1.0.7 (source) (25.98 kB)
+✔ Got vctrs 0.6.2 (source) (963.71 kB)
+✔ Got sass 0.4.5 (source) (3.03 MB)
+ℹ Installing system requirements
+ℹ Executing `sh -c apt-get -y update`
+ℹ Executing `sh -c apt-get -y install pandoc libicu-dev cmake`
+ℹ Building R6 2.5.1
+ℹ Building base64enc 0.1-3
+ℹ Building cli 3.6.1
+ℹ Building digest 0.6.31
+ℹ Building evaluate 0.20
+ℹ Building fastmap 1.1.1
+✔ Built R6 2.5.1 (1.2s)
+ℹ Building fs 1.6.1
+✔ Built base64enc 0.1-3 (1.5s)
+ℹ Building glue 1.6.2
+✔ Built evaluate 0.20 (1.3s)
+ℹ Building jsonlite 1.8.4
+✔ Built glue 1.6.2 (1.5s)
+ℹ Building magrittr 2.0.3
+✔ Built fastmap 1.1.1 (3s)
+ℹ Building mime 0.12
+✔ Built mime 0.12 (1.2s)
+ℹ Building rappdirs 0.3.3
+✔ Built magrittr 2.0.3 (1.5s)
+ℹ Building rlang 1.1.0
+✔ Built digest 0.6.31 (4.8s)
+ℹ Building stringi 1.7.12
+✔ Built jsonlite 1.8.4 (4.6s)
+✔ Built rappdirs 0.3.3 (1.7s)
+ℹ Building xfun 0.38
+ℹ Building yaml 2.3.7
+✔ Built xfun 0.38 (2.3s)
+ℹ Building fansi 1.0.4
+✔ Built cli 3.6.1 (9.3s)
+ℹ Building generics 0.1.3
+✔ Built generics 0.1.3 (1.1s)
+ℹ Building pkgconfig 2.0.3
+✔ Built pkgconfig 2.0.3 (974ms)
+ℹ Building utf8 1.2.3
+✔ Built yaml 2.3.7 (5.2s)
+ℹ Building withr 2.5.0
+✔ Built fansi 1.0.4 (4.3s)
+ℹ Building RColorBrewer 1.1-3
+✔ Built withr 2.5.0 (1.5s)
+ℹ Building colorspace 2.1-0
+✔ Built RColorBrewer 1.1-3 (1.2s)
+ℹ Building farver 2.1.1
+✔ Built utf8 1.2.3 (3.8s)
+ℹ Building insight 0.19.1
+✔ Built rlang 1.1.0 (12.2s)
+ℹ Building isoband 0.2.7
+✔ Built colorspace 2.1-0 (5.5s)
+ℹ Building labeling 0.4.2
+✔ Built labeling 0.4.2 (1.1s)
+ℹ Building viridisLite 0.4.1
+✔ Built viridisLite 0.4.1 (1000ms)
+ℹ Building Rcpp 1.0.10
+✔ Built isoband 0.2.7 (5.1s)
+ℹ Building brio 1.1.3
+✔ Built brio 1.1.3 (1.3s)
+ℹ Building crayon 1.5.2
+✔ Built fs 1.6.1 (23.7s)
+ℹ Building praise 1.0.0
+✔ Built crayon 1.5.2 (1.4s)
+ℹ Building ps 1.7.5
+✔ Built praise 1.0.0 (860ms)
+ℹ Building rprojroot 2.0.3
+✔ Built rprojroot 2.0.3 (1s)
+ℹ Building MASS 7.3-58.3
+✔ Built insight 0.19.1 (12s)
+ℹ Building getopt 1.20.3
+✔ Built getopt 1.20.3 (922ms)
+ℹ Building bit 4.0.5
+✔ Built ps 1.7.5 (4.2s)
+ℹ Building clipr 0.8.0
+✔ Built clipr 0.8.0 (858ms)
+ℹ Building cpp11 0.4.3
+✔ Built cpp11 0.4.3 (1.1s)
+ℹ Building prettyunits 1.1.1
+✔ Built prettyunits 1.1.1 (862ms)
+ℹ Building SnowballC 0.7.0
+✔ Built MASS 7.3-58.3 (6.1s)
+ℹ Building janeaustenr 1.0.0
+✔ Built bit 4.0.5 (5.8s)
+ℹ Building txtplot 1.0-4
+✔ Built janeaustenr 1.0.0 (2s)
+✔ Installed R6 2.5.1  (45ms)
+✔ Installed base64enc 0.1-3  (21ms)
+✔ Installed cli 3.6.1  (64ms)
+✔ Installed digest 0.6.31  (28ms)
+✔ Installed evaluate 0.20  (21ms)
+✔ Installed fastmap 1.1.1  (1s)
+✔ Built txtplot 1.0-4 (2.1s)
+✔ Installed fs 1.6.1  (69ms)
+✔ Installed glue 1.6.2  (59ms)
+✔ Installed jsonlite 1.8.4  (58ms)
+✔ Installed magrittr 2.0.3  (77ms)
+✔ Installed mime 0.12  (75ms)
+✔ Installed rappdirs 0.3.3  (76ms)
+✔ Installed rlang 1.1.0  (61ms)
+ℹ Building cachem 1.0.7
+✔ Installed xfun 0.38  (84ms)
+ℹ Building ellipsis 0.3.2
+✔ Built farver 2.1.1 (23.4s)
+ℹ Building highr 0.10
+✔ Built SnowballC 0.7.0 (5.5s)
+ℹ Building lifecycle 1.0.3
+✔ Built ellipsis 0.3.2 (1.5s)
+ℹ Building tinytex 0.45
+✔ Built cachem 1.0.7 (1.9s)
+✔ Installed cachem 1.0.7  (61ms)
+ℹ Building memoise 2.0.1
+✔ Built highr 0.10 (1.2s)
+✔ Installed ellipsis 0.3.2  (34ms)
+ℹ Building htmltools 0.5.5
+✔ Built lifecycle 1.0.3 (2s)
+✔ Installed highr 0.10  (34ms)
+✔ Installed lifecycle 1.0.3  (36ms)
+ℹ Building vctrs 0.6.2
+✔ Built tinytex 0.45 (1.8s)
+✔ Built memoise 2.0.1 (1.5s)
+ℹ Building gtable 0.3.3
+✔ Installed memoise 2.0.1  (43ms)
+✔ Installed yaml 2.3.7  (26ms)
+ℹ Building knitr 1.42
+✔ Built gtable 0.3.3 (1.7s)
+✔ Installed fansi 1.0.4  (26ms)
+✔ Built htmltools 0.5.5 (3.2s)
+✔ Installed generics 0.1.3  (45ms)
+✔ Installed htmltools 0.5.5  (55ms)
+ℹ Building fontawesome 0.5.1
+✔ Installed pkgconfig 2.0.3  (129ms)
+ℹ Building jquerylib 0.1.4
+✔ Built jquerylib 0.1.4 (1.4s)
+ℹ Building sass 0.4.5
+✔ Built fontawesome 0.5.1 (1.8s)
+✔ Installed fontawesome 0.5.1  (45ms)
+✔ Installed jquerylib 0.1.4  (35ms)
+✔ Installed utf8 1.2.3  (51ms)
+✔ Installed withr 2.5.0  (26ms)
+✔ Installed RColorBrewer 1.1-3  (22ms)
+✔ Installed colorspace 2.1-0  (71ms)
+ℹ Building munsell 0.5.0
+✔ Built munsell 0.5.0 (1.3s)
+✔ Installed farver 2.1.1  (72ms)
+✔ Built knitr 1.42 (5.2s)
+✔ Installed gtable 0.3.3  (86ms)
+✔ Installed insight 0.19.1  (82ms)
+ℹ Building datawizard 0.7.1
+✔ Installed isoband 0.2.7  (186ms)
+✔ Installed labeling 0.4.2  (33ms)
+✔ Installed munsell 0.5.0  (24ms)
+✔ Installed viridisLite 0.4.1  (31ms)
+ℹ Building scales 1.2.1
+✔ Built Rcpp 1.0.10 (28s)
+✔ Installed Rcpp 1.0.10  (141ms)
+ℹ Building extraDistr 1.9.1
+✔ Built scales 1.2.1 (3.1s)
+ℹ Building RcppEigen 0.3.3.9.3
+✔ Built datawizard 0.7.1 (4.4s)
+ℹ Building minqa 1.2.5
+✔ Built minqa 1.2.5 (7.9s)
+✔ Installed datawizard 0.7.1  (39ms)
+ℹ Building bayestestR 0.13.1
+✔ Built vctrs 0.6.2 (18.6s)
+✔ Installed vctrs 0.6.2  (92ms)
+ℹ Building pillar 1.9.0
+✔ Built pillar 1.9.0 (3.2s)
+ℹ Building tidyselect 1.2.0
+✔ Built bayestestR 0.13.1 (5.3s)
+ℹ Building purrr 1.0.1
+✔ Built tidyselect 1.2.0 (1.9s)
+ℹ Building hms 1.1.3
+✔ Built stringi 1.7.12 (59.8s)
+✔ Installed stringi 1.7.12  (88ms)
+ℹ Building stringr 1.5.0
+✔ Built hms 1.1.3 (1.4s)
+✔ Installed pillar 1.9.0  (37ms)
+ℹ Building tibble 3.2.1
+✔ Built stringr 1.5.0 (1.9s)
+✔ Installed tidyselect 1.2.0  (25ms)
+✔ Installed bayestestR 0.13.1  (58ms)
+ℹ Building parameters 0.21.0
+✔ Built purrr 1.0.1 (3.8s)
+ℹ Building performance 0.10.3
+✔ Built tibble 3.2.1 (3.1s)
+✔ Installed scales 1.2.1  (32ms)
+✔ Installed knitr 1.42  (69ms)
+✔ Installed brio 1.1.3  (22ms)
+✔ Installed crayon 1.5.2  (25ms)
+ℹ Building diffobj 0.3.5
+✔ Built performance 0.10.3 (7.2s)
+✔ Installed performance 0.10.3  (62ms)
+✔ Installed minqa 1.2.5  (31ms)
+✔ Built diffobj 0.3.5 (6s)
+✔ Installed praise 1.0.0  (49ms)
+✔ Installed diffobj 0.3.5  (58ms)
+✔ Installed ps 1.7.5  (53ms)
+ℹ Building processx 3.8.1
+✔ Installed rprojroot 2.0.3  (134ms)
+ℹ Building desc 1.4.2
+✔ Built desc 1.4.2 (2.1s)
+✔ Installed desc 1.4.2  (26ms)
+ℹ Building pkgload 1.3.2
+✔ Built parameters 0.21.0 (11s)
+✔ Installed parameters 0.21.0  (54ms)
+ℹ Building correlation 0.8.4
+✔ Built processx 3.8.1 (4.4s)
+ℹ Building effectsize 0.8.3
+✔ Built pkgload 1.3.2 (2.1s)
+✔ Installed pkgload 1.3.2  (24ms)
+✔ Installed processx 3.8.1  (32ms)
+ℹ Building callr 3.7.3
+✔ Built correlation 0.8.4 (2.3s)
+✔ Installed correlation 0.8.4  (41ms)
+✔ Installed MASS 7.3-58.3  (47ms)
+✔ Installed getopt 1.20.3  (22ms)
+ℹ Building optparse 1.7.3
+✔ Built optparse 1.7.3 (919ms)
+✔ Installed optparse 1.7.3  (34ms)
+✔ Installed purrr 1.0.1  (30ms)
+✔ Installed bit 4.0.5  (41ms)
+ℹ Building bit64 4.0.5
+✔ Built callr 3.7.3 (3.3s)
+✔ Installed callr 3.7.3  (29ms)
+✔ Installed clipr 0.8.0  (1s)
+✔ Built effectsize 0.8.3 (4.7s)
+✔ Installed cpp11 0.4.3  (48ms)
+ℹ Building tzdb 0.3.0
+✔ Installed effectsize 0.8.3  (160ms)
+ℹ Building modelbased 0.8.6
+✔ Built modelbased 0.8.6 (1.9s)
+ℹ Building report 0.5.7
+✔ Built bit64 4.0.5 (5.7s)
+✔ Installed modelbased 0.8.6  (52ms)
+✔ Installed bit64 4.0.5  (31ms)
+✔ Installed hms 1.1.3  (23ms)
+✔ Installed prettyunits 1.1.1  (22ms)
+ℹ Building progress 1.2.2
+✔ Built progress 1.2.2 (1.4s)
+✔ Installed progress 1.2.2  (22ms)
+✔ Installed stringr 1.5.0  (57ms)
+✔ Installed tibble 3.2.1  (38ms)
+ℹ Building dplyr 1.1.1
+✔ Built RcppEigen 0.3.3.9.3 (40.9s)
+ℹ Building ggplot2 3.4.2
+✔ Built report 0.5.7 (4.1s)
+ℹ Building forcats 1.0.0
+✔ Built forcats 1.0.0 (1.8s)
+ℹ Building rematch2 2.1.2
+✔ Built rematch2 2.1.2 (1.4s)
+✔ Installed report 0.5.7  (38ms)
+✔ Installed forcats 1.0.0  (29ms)
+✔ Installed RcppEigen 0.3.3.9.3  (1.4s)
+✔ Installed rematch2 2.1.2  (24ms)
+ℹ Building waldo 0.4.0
+✔ Built tzdb 0.3.0 (11.5s)
+✔ Installed tzdb 0.3.0  (66ms)
+ℹ Building vroom 1.6.1
+✔ Built waldo 0.4.0 (1.5s)
+✔ Installed waldo 0.4.0  (1s)
+ℹ Building testthat 3.1.7
+✔ Built dplyr 1.1.1 (8.6s)
+✔ Installed dplyr 1.1.1  (72ms)
+ℹ Building tidyr 1.3.0
+✔ Built ggplot2 3.4.2 (11.3s)
+✔ Installed ggplot2 3.4.2  (85ms)
+ℹ Building see 0.7.5
+✔ Built tidyr 1.3.0 (7.2s)
+✔ Installed tidyr 1.3.0  (72ms)
+✔ Built see 0.7.5 (4.3s)
+✔ Installed SnowballC 0.7.0  (48ms)
+ℹ Building tokenizers 0.3.0
+✔ Installed see 0.7.5  (113ms)
+ℹ Building easystats 0.6.0
+✔ Built easystats 0.6.0 (2.4s)
+✔ Installed easystats 0.6.0  (35ms)
+✔ Installed janeaustenr 1.0.0  (32ms)
+✔ Installed tinytex 0.45  (22ms)
+✔ Installed txtplot 1.0-4  (20ms)
+✔ Built tokenizers 0.3.0 (10.8s)
+✔ Installed tokenizers 0.3.0  (58ms)
+ℹ Building tidytext 0.4.1
+✔ Built testthat 3.1.7 (21.2s)
+✔ Installed testthat 3.1.7  (84ms)
+ℹ Building nloptr 2.0.3
+✔ Built tidytext 0.4.1 (4.4s)
+✔ Installed tidytext 0.4.1  (51ms)
+✔ Built sass 0.4.5 (1m 29s)
+✔ Installed sass 0.4.5  (70ms)
+ℹ Building bslib 0.4.2
+✔ Built bslib 0.4.2 (3.3s)
+✔ Installed bslib 0.4.2  (94ms)
+ℹ Building rmarkdown 2.21
+✔ Built rmarkdown 2.21 (4.3s)
+✔ Installed rmarkdown 2.21  (76ms)
+ℹ Building bookdown 0.33
+✔ Built bookdown 0.33 (2.2s)
+✔ Installed bookdown 0.33  (42ms)
+✔ Built nloptr 2.0.3 (28.8s)
+✔ Installed nloptr 2.0.3  (100ms)
+ℹ Building lme4 1.1-32
+✔ Built vroom 1.6.1 (1m 1.7s)
+✔ Installed vroom 1.6.1  (189ms)
+ℹ Building readr 2.1.4
+✔ Built readr 2.1.4 (27.8s)
+✔ Installed readr 2.1.4  (89ms)
+✔ Built lme4 1.1-32 (38.3s)
+✔ Installed lme4 1.1-32  (212ms)
+✔ Built extraDistr 1.9.1 (2m 41.3s)
+✔ Installed extraDistr 1.9.1  (221ms)
+✔ 17 pkgs + 90 deps: kept 3, upd 1, added 101, dld 102 (72.92 MB) [3m 54.1s]
+> 
+> 
+--> 7ae40048fe01
+STEP 5/12: RUN /rocker_scripts/install_texlive.sh
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libgdbm-compat4 libgdbm6 libperl5.34 perl-modules-5.34
+Suggested packages:
+  gdbm-l10n perl-doc libterm-readline-gnu-perl | libterm-readline-perl-perl
+  libtap-harness-archive-perl xz-utils
+Recommended packages:
+  netbase
+The following NEW packages will be installed:
+  libgdbm-compat4 libgdbm6 libperl5.34 perl perl-modules-5.34 wget xzdec
+0 upgraded, 7 newly installed, 0 to remove and 19 not upgraded.
+Need to get 8,393 kB of archives.
+After this operation, 48.8 MB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl-modules-5.34 all 5.34.0-3ubuntu1.2 [2,977 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm6 arm64 1.23-1 [34.1 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 libgdbm-compat4 arm64 1.23-1 [6,294 B]
+Get:4 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 libperl5.34 arm64 5.34.0-3ubuntu1.2 [4,726 kB]
+Get:5 http://ports.ubuntu.com/ubuntu-ports jammy-updates/main arm64 perl arm64 5.34.0-3ubuntu1.2 [232 kB]
+Get:6 http://ports.ubuntu.com/ubuntu-ports jammy/main arm64 wget arm64 1.21.2-2ubuntu1 [364 kB]
+Get:7 http://ports.ubuntu.com/ubuntu-ports jammy/universe arm64 xzdec arm64 5.2.5-2ubuntu1 [55.0 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 8,393 kB in 0s (21.6 MB/s)
+Selecting previously unselected package perl-modules-5.34.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 17079 files and directories currently installed.)
+Preparing to unpack .../0-perl-modules-5.34_5.34.0-3ubuntu1.2_all.deb ...
+Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.2) ...
+Selecting previously unselected package libgdbm6:arm64.
+Preparing to unpack .../1-libgdbm6_1.23-1_arm64.deb ...
+Unpacking libgdbm6:arm64 (1.23-1) ...
+Selecting previously unselected package libgdbm-compat4:arm64.
+Preparing to unpack .../2-libgdbm-compat4_1.23-1_arm64.deb ...
+Unpacking libgdbm-compat4:arm64 (1.23-1) ...
+Selecting previously unselected package libperl5.34:arm64.
+Preparing to unpack .../3-libperl5.34_5.34.0-3ubuntu1.2_arm64.deb ...
+Unpacking libperl5.34:arm64 (5.34.0-3ubuntu1.2) ...
+Selecting previously unselected package perl.
+Preparing to unpack .../4-perl_5.34.0-3ubuntu1.2_arm64.deb ...
+Unpacking perl (5.34.0-3ubuntu1.2) ...
+Selecting previously unselected package wget.
+Preparing to unpack .../5-wget_1.21.2-2ubuntu1_arm64.deb ...
+Unpacking wget (1.21.2-2ubuntu1) ...
+Selecting previously unselected package xzdec.
+Preparing to unpack .../6-xzdec_5.2.5-2ubuntu1_arm64.deb ...
+Unpacking xzdec (5.2.5-2ubuntu1) ...
+Setting up xzdec (5.2.5-2ubuntu1) ...
+Setting up wget (1.21.2-2ubuntu1) ...
+Setting up perl-modules-5.34 (5.34.0-3ubuntu1.2) ...
+Setting up libgdbm6:arm64 (1.23-1) ...
+Setting up libgdbm-compat4:arm64 (1.23-1) ...
+Setting up libperl5.34:arm64 (5.34.0-3ubuntu1.2) ...
+Setting up perl (5.34.0-3ubuntu1.2) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.4) ...
+--2023-11-27 10:01:10--  https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+Resolving mirror.ctan.org (mirror.ctan.org)... 89.58.7.101
+Connecting to mirror.ctan.org (mirror.ctan.org)|89.58.7.101|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://ftp.agdsn.de/pub/mirrors/latex/dante/systems/texlive/tlnet/install-tl-unx.tar.gz [following]
+--2023-11-27 10:01:10--  https://ftp.agdsn.de/pub/mirrors/latex/dante/systems/texlive/tlnet/install-tl-unx.tar.gz
+Resolving ftp.agdsn.de (ftp.agdsn.de)... 141.30.235.39
+Connecting to ftp.agdsn.de (ftp.agdsn.de)|141.30.235.39|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 5741263 (5.5M) [application/octet-stream]
+Saving to: ‘install-tl-unx.tar.gz’
+
+     0K .......... .......... .......... .......... ..........  0% 1.31M 4s
+    50K .......... .......... .......... .......... ..........  1% 1.98M 3s
+   100K .......... .......... .......... .......... ..........  2%  292M 2s
+   150K .......... .......... .......... .......... ..........  3% 5.17M 2s
+   200K .......... .......... .......... .......... ..........  4% 3.35M 2s
+   250K .......... .......... .......... .......... ..........  5% 82.5M 2s
+   300K .......... .......... .......... .......... ..........  6%  185M 1s
+   350K .......... .......... .......... .......... ..........  7% 5.50M 1s
+   400K .......... .......... .......... .......... ..........  8% 3.38M 1s
+   450K .......... .......... .......... .......... ..........  8% 73.8M 1s
+   500K .......... .......... .......... .......... ..........  9%  547M 1s
+   550K .......... .......... .......... .......... .......... 10% 36.7M 1s
+   600K .......... .......... .......... .......... .......... 11%  148M 1s
+   650K .......... .......... .......... .......... .......... 12%  554M 1s
+   700K .......... .......... .......... .......... .......... 13% 7.42M 1s
+   750K .......... .......... .......... .......... .......... 14% 65.0M 1s
+   800K .......... .......... .......... .......... .......... 15% 52.5M 1s
+   850K .......... .......... .......... .......... .......... 16% 3.76M 1s
+   900K .......... .......... .......... .......... .......... 16% 28.3M 1s
+   950K .......... .......... .......... .......... .......... 17% 56.5M 1s
+  1000K .......... .......... .......... .......... .......... 18%  636M 1s
+  1050K .......... .......... .......... .......... .......... 19% 55.0M 1s
+  1100K .......... .......... .......... .......... .......... 20% 22.0M 1s
+  1150K .......... .......... .......... .......... .......... 21%  154M 1s
+  1200K .......... .......... .......... .......... .......... 22%  539M 0s
+  1250K .......... .......... .......... .......... .......... 23%  620M 0s
+  1300K .......... .......... .......... .......... .......... 24%  106M 0s
+  1350K .......... .......... .......... .......... .......... 24%  529M 0s
+  1400K .......... .......... .......... .......... .......... 25% 27.8M 0s
+  1450K .......... .......... .......... .......... .......... 26% 39.8M 0s
+  1500K .......... .......... .......... .......... .......... 27%  600M 0s
+  1550K .......... .......... .......... .......... .......... 28% 34.1M 0s
+  1600K .......... .......... .......... .......... .......... 29% 40.4M 0s
+  1650K .......... .......... .......... .......... .......... 30%  485M 0s
+  1700K .......... .......... .......... .......... .......... 31%  125M 0s
+  1750K .......... .......... .......... .......... .......... 32% 4.16M 0s
+  1800K .......... .......... .......... .......... .......... 32% 20.5M 0s
+  1850K .......... .......... .......... .......... .......... 33% 51.7M 0s
+  1900K .......... .......... .......... .......... .......... 34%  115M 0s
+  1950K .......... .......... .......... .......... .......... 35%  468M 0s
+  2000K .......... .......... .......... .......... .......... 36% 55.1M 0s
+  2050K .......... .......... .......... .......... .......... 37%  569M 0s
+  2100K .......... .......... .......... .......... .......... 38% 55.5M 0s
+  2150K .......... .......... .......... .......... .......... 39%  427M 0s
+  2200K .......... .......... .......... .......... .......... 40%  678M 0s
+  2250K .......... .......... .......... .......... .......... 41% 73.0M 0s
+  2300K .......... .......... .......... .......... .......... 41%  100M 0s
+  2350K .......... .......... .......... .......... .......... 42%  566M 0s
+  2400K .......... .......... .......... .......... .......... 43% 18.3M 0s
+  2450K .......... .......... .......... .......... .......... 44% 32.6M 0s
+  2500K .......... .......... .......... .......... .......... 45% 79.9M 0s
+  2550K .......... .......... .......... .......... .......... 46%  270M 0s
+  2600K .......... .......... .......... .......... .......... 47% 14.0M 0s
+  2650K .......... .......... .......... .......... .......... 48%  256M 0s
+  2700K .......... .......... .......... .......... .......... 49%  655M 0s
+  2750K .......... .......... .......... .......... .......... 49% 41.9M 0s
+  2800K .......... .......... .......... .......... .......... 50%  630M 0s
+  2850K .......... .......... .......... .......... .......... 51%  518M 0s
+  2900K .......... .......... .......... .......... .......... 52%  672M 0s
+  2950K .......... .......... .......... .......... .......... 53%  654M 0s
+  3000K .......... .......... .......... .......... .......... 54%  735M 0s
+  3050K .......... .......... .......... .......... .......... 55%  125M 0s
+  3100K .......... .......... .......... .......... .......... 56%  497M 0s
+  3150K .......... .......... .......... .......... .......... 57%  601M 0s
+  3200K .......... .......... .......... .......... .......... 57%  373M 0s
+  3250K .......... .......... .......... .......... .......... 58% 58.9M 0s
+  3300K .......... .......... .......... .......... .......... 59%  431M 0s
+  3350K .......... .......... .......... .......... .......... 60%  516M 0s
+  3400K .......... .......... .......... .......... .......... 61%  679M 0s
+  3450K .......... .......... .......... .......... .......... 62%  158M 0s
+  3500K .......... .......... .......... .......... .......... 63%  654M 0s
+  3550K .......... .......... .......... .......... .......... 64% 10.8M 0s
+  3600K .......... .......... .......... .......... .......... 65% 57.1M 0s
+  3650K .......... .......... .......... .......... .......... 65% 31.5M 0s
+  3700K .......... .......... .......... .......... .......... 66%  632M 0s
+  3750K .......... .......... .......... .......... .......... 67% 28.7M 0s
+  3800K .......... .......... .......... .......... .......... 68% 63.6M 0s
+  3850K .......... .......... .......... .......... .......... 69%  623M 0s
+  3900K .......... .......... .......... .......... .......... 70%  191M 0s
+  3950K .......... .......... .......... .......... .......... 71% 52.3M 0s
+  4000K .......... .......... .......... .......... .......... 72%  619M 0s
+  4050K .......... .......... .......... .......... .......... 73%  707M 0s
+  4100K .......... .......... .......... .......... .......... 74%  615M 0s
+  4150K .......... .......... .......... .......... .......... 74% 37.8M 0s
+  4200K .......... .......... .......... .......... .......... 75% 75.3M 0s
+  4250K .......... .......... .......... .......... .......... 76% 35.2M 0s
+  4300K .......... .......... .......... .......... .......... 77%  673M 0s
+  4350K .......... .......... .......... .......... .......... 78%  119M 0s
+  4400K .......... .......... .......... .......... .......... 79% 51.3M 0s
+  4450K .......... .......... .......... .......... .......... 80%  660M 0s
+  4500K .......... .......... .......... .......... .......... 81%  683M 0s
+  4550K .......... .......... .......... .......... .......... 82%  629M 0s
+  4600K .......... .......... .......... .......... .......... 82%  623M 0s
+  4650K .......... .......... .......... .......... .......... 83% 34.5M 0s
+  4700K .......... .......... .......... .......... .......... 84%  185M 0s
+  4750K .......... .......... .......... .......... .......... 85% 58.0M 0s
+  4800K .......... .......... .......... .......... .......... 86% 52.0M 0s
+  4850K .......... .......... .......... .......... .......... 87%  304K 0s
+  4900K .......... .......... .......... .......... .......... 88% 2.02M 0s
+  4950K .......... .......... .......... .......... .......... 89% 2.05M 0s
+  5000K .......... .......... .......... .......... .......... 90% 47.4M 0s
+  5050K .......... .......... .......... .......... .......... 90% 2.11M 0s
+  5100K .......... .......... .......... .......... .......... 91% 33.7M 0s
+  5150K .......... .......... .......... .......... .......... 92% 2.05M 0s
+  5200K .......... .......... .......... .......... .......... 93% 52.2M 0s
+  5250K .......... .......... .......... .......... .......... 94% 16.4M 0s
+  5300K .......... .......... .......... .......... .......... 95%  503M 0s
+  5350K .......... .......... .......... .......... .......... 96%  157M 0s
+  5400K .......... .......... .......... .......... .......... 97%  347M 0s
+  5450K .......... .......... .......... .......... .......... 98% 80.0M 0s
+  5500K .......... .......... .......... .......... .......... 98%  614M 0s
+  5550K .......... .......... .......... .......... .......... 99% 2.72M 0s
+  5600K ......                                                100% 12.5T=0.5s
+
+2023-11-27 10:01:11 (11.3 MB/s) - ‘install-tl-unx.tar.gz’ saved [5741263/5741263]
+
+Automated TeX Live installation using profile: /tmp/texlive-profile.txt
+Loading https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet/tlpkg/texlive.tlpdb
+Installing TeX Live 2023 from: https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet (not verified)
+Platform: aarch64-linux => 'GNU/Linux on ARM64'
+Distribution: net  (downloading)
+Using URL: https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet
+Directory for temporary files: /tmp/YVQUqtI9aH
+Installing to: /usr/local/texlive
+Installing [1/4, time/total: ??:??/??:??]: hyphen-base [23k]
+Installing [2/4, time/total: 00:00/00:00]: kpathsea [32k]
+Installing [3/4, time/total: 00:00/00:00]: texlive-scripts [112k]
+Installing [4/4, time/total: 00:00/00:00]: texlive.infra [349k]
+Time used for installing the packages: 00:00
+Installing [1/3, time/total: ??:??/??:??]: kpathsea.aarch64-linux [38k]
+Installing [2/3, time/total: 00:00/00:00]: texlive-scripts.aarch64-linux [1k]
+Installing [3/3, time/total: 00:01/00:03]: texlive.infra.aarch64-linux [81k]
+Time used for installing the packages: 00:01
+running mktexlsr /usr/local/texlive/texmf-dist ...
+writing fmtutil.cnf to /usr/local/texlive/texmf-dist/web2c/fmtutil.cnf
+writing updmap.cfg to /usr/local/texlive/texmf-dist/web2c/updmap.cfg
+writing language.dat to /opt/texlive/texmf-var/tex/generic/config/language.dat
+writing language.def to /opt/texlive/texmf-var/tex/generic/config/language.def
+writing language.dat.lua to /opt/texlive/texmf-var/tex/generic/config/language.dat.lua
+running mktexlsr /opt/texlive/texmf-var /opt/texlive/texmf-config /usr/local/texlive/texmf-dist ...
+running updmap-sys --nohash ...done
+re-running mktexlsr /opt/texlive/texmf-var /opt/texlive/texmf-config ...
+pre-generating all format files, be patient...
+running fmtutil-sys --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --no-strict --all ...done
+running package-specific postactions
+finished with package-specific postactions
+
+
+Welcome to TeX Live!
+
+
+See /usr/local/texlive/index.html for links to documentation.
+The TeX Live web site (https://tug.org/texlive/) contains any updates and corrections. TeX Live is a joint project of the TeX user groups around the world; please consider supporting it by joining the group best for you. The list of groups is available on the web at https://tug.org/usergroups.html.
+
+
+Add /usr/local/texlive/texmf-dist/doc/man to MANPATH.
+Add /usr/local/texlive/texmf-dist/doc/info to INFOPATH.
+Most importantly, add /usr/local/texlive/bin/aarch64-linux
+to your PATH for current and future sessions.
+Logfile: /usr/local/texlive/install-tl.log
+tlmgr: package repository https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet (not verified: gpg unavailable)
+tlmgr: saving backups to /usr/local/texlive/tlpkg/backups
+tlmgr: no self-updates for tlmgr available
+tlmgr: package repository https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet (not verified: gpg unavailable)
+[1/42, ??:??/??:??] install: atbegshi [5k]
+[2/42, 00:00/00:00] install: atveryend [4k]
+[3/42, 00:00/00:00] install: babel [219k]
+[4/42, 00:01/01:55] install: cm [233k]
+[5/42, 00:01/00:57] install: dehyph [46k]
+[6/42, 00:01/00:52] install: dvipdfmx.aarch64-linux [399k]
+[7/42, 00:01/00:29] install: dvipdfmx [27k]
+[8/42, 00:01/00:28] install: etex [12k]
+[9/42, 00:01/00:28] install: everyshi [2k]
+[10/42, 00:01/00:27] install: firstaid [4k]
+[11/42, 00:01/00:27] install: glyphlist [25k]
+[12/42, 00:02/00:54] install: graphics [16k]
+[13/42, 00:02/00:53] install: graphics-cfg [2k]
+[14/42, 00:02/00:53] install: graphics-def [11k]
+[15/42, 00:02/00:52] install: hyph-utf8 [16k]
+[16/42, 00:02/00:52] install: knuth-lib [30k]
+[17/42, 00:02/00:50] install: l3backend [16k]
+[18/42, 00:02/00:49] install: l3kernel [173k]
+[19/42, 00:02/00:42] install: l3packages [22k]
+[20/42, 00:02/00:42] install: latex [233k]
+[21/42, 00:03/00:53] install: latex-bin.aarch64-linux [1k]
+[22/42, 00:03/00:53] install: latex-bin [1k]
+[23/42, 00:03/00:53] install: latex-fonts [18k]
+[24/42, 00:03/00:52] install: latexconfig [3k]
+[25/42, 00:03/00:52] install: lm [11665k]
+[26/42, 00:04/00:08] install: lua-alt-getopt [2k]
+[27/42, 00:04/00:08] install: lua-uni-algos [8k]
+[28/42, 00:04/00:08] install: luahbtex.aarch64-linux [2152k]
+[29/42, 00:05/00:08] install: luahbtex [1k]
+[30/42, 00:05/00:08] install: lualibs [131k]
+[31/42, 00:05/00:08] install: luaotfload.aarch64-linux [1k]
+[32/42, 00:05/00:08] install: luaotfload [607k]
+[33/42, 00:05/00:08] install: luatex.aarch64-linux [1685k]
+[34/42, 00:06/00:08] install: luatex [14k]
+[35/42, 00:06/00:08] install: pdftex.aarch64-linux [815k]
+[36/42, 00:06/00:08] install: pdftex [39k]
+[37/42, 00:06/00:08] install: plain [29k]
+[38/42, 00:06/00:08] install: tex-ini-files [5k]
+[39/42, 00:06/00:08] install: unicode-data [298k]
+[40/42, 00:06/00:08] install: xetex.aarch64-linux [7417k]
+[41/42, 00:07/00:07] install: xetex [8k]
+[42/42, 00:07/00:07] install: xetexconfig [1k]
+running mktexlsr ...
+done running mktexlsr.
+running updmap-sys ...
+done running updmap-sys.
+regenerating fmtutil.cnf in /usr/local/texlive/texmf-dist
+running fmtutil-sys --byengine luatex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/AwXuG9l1o1/anxt6d3q7j ...
+  OK: luatex.fmt/luatex dvilualatex.fmt/luatex dviluatex.fmt/luatex
+running fmtutil-sys --byengine xetex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/AwXuG9l1o1/anxt6d3q7j ...
+  OK: xetex.fmt/xetex xelatex.fmt/xetex
+running fmtutil-sys --byengine pdftex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/AwXuG9l1o1/anxt6d3q7j ...
+  OK: pdftex.fmt/pdftex pdfetex.fmt/pdftex latex.fmt/pdftex pdflatex.fmt/pdftex etex.fmt/pdftex
+running fmtutil-sys --byengine luahbtex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/AwXuG9l1o1/anxt6d3q7j ...
+  OK: luahbtex.fmt/luahbtex lualatex.fmt/luahbtex
+tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
+tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
+tlmgr: package repository https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet (not verified: gpg unavailable)
+[1/27, ??:??/??:??] install: ae [57k]
+[2/27, 00:00/00:00] install: amsfonts [3542k]
+[3/27, 00:00/00:00] install: bibtex.aarch64-linux [75k]
+[4/27, 00:00/00:00] install: bibtex [15k]
+[5/27, 00:01/00:03] install: context.aarch64-linux [978k]
+[6/27, 00:01/00:03] install: context [8080k]
+[7/27, 00:02/00:02] install: inconsolata [293k]
+[8/27, 00:02/00:02] install: listings [144k]
+[9/27, 00:02/00:02] install: lm-math [369k]
+[10/27, 00:02/00:02] install: makeindex.aarch64-linux [47k]
+[11/27, 00:03/00:03] install: makeindex [5k]
+[12/27, 00:03/00:03] install: manfnt-font [26k]
+[13/27, 00:03/00:03] install: metafont.aarch64-linux [184k]
+[14/27, 00:03/00:03] install: metafont [9k]
+[15/27, 00:03/00:03] install: mflogo-font [18k]
+[16/27, 00:03/00:03] install: mfware.aarch64-linux [116k]
+[17/27, 00:03/00:03] install: mfware [4k]
+[18/27, 00:03/00:03] install: modes [27k]
+[19/27, 00:03/00:03] install: parskip [3k]
+[20/27, 00:03/00:03] install: pdfcrop.aarch64-linux [1k]
+[21/27, 00:04/00:04] install: pdfcrop [11k]
+[22/27, 00:04/00:04] install: stmaryrd [163k]
+[23/27, 00:04/00:04] install: tex.aarch64-linux [172k]
+[24/27, 00:04/00:04] install: tex [1k]
+[25/27, 00:04/00:04] install: tools [43k]
+[26/27, 00:04/00:04] install: url [6k]
+[27/27, 00:04/00:04] install: xkeyval [9k]
+running mktexlsr ...
+done running mktexlsr.
+running updmap-sys ...
+done running updmap-sys.
+regenerating fmtutil.cnf in /usr/local/texlive/texmf-dist
+running fmtutil-sys --byengine tex --no-error-if-no-format --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/XIEfYZEFat/cJ9HIL00we ...
+  OK: tex.fmt/tex
+running fmtutil-sys --byfmt mf --no-error-if-no-engine=luametatex,luajithbtex,luajittex,mfluajit --status-file=/tmp/XIEfYZEFat/cJ9HIL00we ...
+  OK: mf.fmt/mf-nowin
+tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
+tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
+Check the tlmgr version...
+
+tlmgr revision 68903 (2023-11-19 19:53:19 +0100)
+tlmgr using installation: /usr/local/texlive
+TeX Live (https://tug.org/texlive) version 2023
+
+Install texlive, done!
+--> 7f421dbeca3a
+STEP 6/12: ENV PATH="$PATH:/usr/local/texlive/bin/linux"
+--> 07169791f335
+STEP 7/12: COPY tex-pkgs.txt /tmp/
+--> 1b04928301c6
+STEP 8/12: RUN tlmgr install `cat /tmp/tex-pkgs.txt`
+tlmgr: package repository https://markov.htwsaar.de/tex-archive/systems/texlive/tlnet (not verified: gpg unavailable)
+tlmgr install: package already present: amsfonts
+tlmgr install: package already present: atbegshi
+tlmgr install: package already present: atveryend
+tlmgr install: package already present: babel
+tlmgr install: package already present: cm
+tlmgr install: package already present: dehyph
+tlmgr install: package already present: dvipdfmx
+tlmgr install: package already present: etex
+tlmgr install: package already present: everyshi
+tlmgr install: package already present: firstaid
+tlmgr install: package already present: glyphlist
+tlmgr install: package already present: graphics
+tlmgr install: package already present: graphics-cfg
+tlmgr install: package already present: graphics-def
+tlmgr install: package already present: hyph-utf8
+tlmgr install: package already present: inconsolata
+tlmgr install: package already present: knuth-lib
+tlmgr install: package already present: l3backend
+tlmgr install: package already present: l3kernel
+tlmgr install: package already present: l3packages
+tlmgr install: package already present: latex
+tlmgr install: package already present: latex-bin
+tlmgr install: package already present: latex-fonts
+tlmgr install: package already present: latexconfig
+tlmgr install: package already present: lm
+tlmgr install: package already present: lm-math
+tlmgr install: package already present: lua-alt-getopt
+tlmgr install: package already present: lua-uni-algos
+tlmgr install: package already present: luahbtex
+tlmgr install: package already present: lualibs
+tlmgr install: package already present: luaotfload
+tlmgr install: package already present: luatex
+tlmgr install: package already present: metafont
+tlmgr install: package already present: mfware
+tlmgr install: package already present: pdftex
+tlmgr install: package already present: plain
+tlmgr install: package already present: tex
+tlmgr install: package already present: tex-ini-files
+tlmgr install: package already present: tools
+tlmgr install: package already present: unicode-data
+tlmgr install: package already present: url
+tlmgr install: package already present: xetex
+tlmgr install: package already present: xetexconfig
+tlmgr install: package already present: xkeyval
+[1/92, ??:??/??:??] install: amscls [32k]
+[2/92, 00:00/00:00] install: amsmath [31k]
+[3/92, 00:00/00:00] install: atkinson [330k]
+[4/92, 00:00/00:00] install: auxhook [2k]
+[5/92, 00:01/01:39] install: babel-english [3k]
+[6/92, 00:01/01:38] install: babel-latin [7k]
+[7/92, 00:01/01:37] install: biber.aarch64-linux [29414k]
+[8/92, 00:03/00:03] install: biber [1k]
+[9/92, 00:03/00:03] install: biblatex [249k]
+[10/92, 00:04/00:05] install: biblatex-apa [32k]
+[11/92, 00:04/00:05] install: biblatex-chicago [107k]
+[12/92, 00:04/00:05] install: biblatex-nature [4k]
+[13/92, 00:04/00:05] install: biblatex-readbbl [2k]
+[14/92, 00:04/00:05] install: biblatex-science [3k]
+[15/92, 00:04/00:05] install: biblatex-vancouver [2k]
+[16/92, 00:04/00:05] install: bigintcalc [7k]
+[17/92, 00:04/00:05] install: bitset [6k]
+[18/92, 00:04/00:05] install: blindtext [11k]
+[19/92, 00:04/00:05] install: booktabs [3k]
+[20/92, 00:05/00:06] install: caption [61k]
+[21/92, 00:05/00:06] install: changes [9k]
+[22/92, 00:05/00:06] install: citation-style-language.aarch64-linux [1k]
+[23/92, 00:05/00:06] install: citation-style-language [2753k]
+[24/92, 00:05/00:05] install: cite [20k]
+[25/92, 00:05/00:05] install: csquotes [18k]
+[26/92, 00:05/00:05] install: ctablestack [2k]
+[27/92, 00:06/00:07] install: datetime [14k]
+[28/92, 00:06/00:07] install: dvips.aarch64-linux [141k]
+[29/92, 00:06/00:07] install: dvips [57k]
+[30/92, 00:06/00:07] install: ec [258k]
+[31/92, 00:06/00:07] install: epstopdf-pkg [5k]
+[32/92, 00:06/00:07] install: etexcmds [3k]
+[33/92, 00:06/00:07] install: etoolbox [9k]
+[34/92, 00:06/00:07] install: euenc [4k]
+[35/92, 00:06/00:06] install: fancyhdr [6k]
+[36/92, 00:07/00:08] install: fancyvrb [12k]
+[37/92, 00:07/00:08] install: filehook [5k]
+[38/92, 00:07/00:08] install: float [3k]
+[39/92, 00:07/00:08] install: fmtcount [26k]
+[40/92, 00:07/00:08] install: fontspec [27k]
+[41/92, 00:07/00:08] install: fp [19k]
+[42/92, 00:07/00:08] install: framed [8k]
+[43/92, 00:07/00:08] install: geometry [9k]
+[44/92, 00:07/00:08] install: gettitlestring [3k]
+[45/92, 00:07/00:08] install: grfext [3k]
+[46/92, 00:07/00:08] install: helvetic [527k]
+[47/92, 00:08/00:09] install: hycolor [4k]
+[48/92, 00:08/00:09] install: hyperref [88k]
+[49/92, 00:08/00:09] install: iftex [4k]
+[50/92, 00:08/00:09] install: infwarerr [3k]
+[51/92, 00:08/00:09] install: intcalc [6k]
+[52/92, 00:08/00:09] install: kvdefinekeys [3k]
+[53/92, 00:08/00:09] install: kvoptions [8k]
+[54/92, 00:08/00:09] install: kvsetkeys [4k]
+[55/92, 00:08/00:09] install: lastpage [5k]
+[56/92, 00:08/00:09] install: latex-amsmath-dev [31k]
+[57/92, 00:09/00:10] install: latex-tools-dev [43k]
+[58/92, 00:09/00:10] install: latexmk.aarch64-linux [1k]
+[59/92, 00:09/00:10] install: latexmk [110k]
+[60/92, 00:09/00:10] install: letltxmacro [3k]
+[61/92, 00:09/00:10] install: lineno [62k]
+[62/92, 00:09/00:10] install: lipsum [123k]
+[63/92, 00:09/00:10] install: logreq [4k]
+[64/92, 00:09/00:10] install: ltxcmds [5k]
+[65/92, 00:09/00:10] install: lua-uca [73k]
+[66/92, 00:10/00:11] install: lualatex-math [4k]
+[67/92, 00:10/00:11] install: luatexbase [4k]
+[68/92, 00:10/00:11] install: luaxml [32k]
+[69/92, 00:10/00:11] install: mdwtools [19k]
+[70/92, 00:10/00:11] install: ms [3k]
+[71/92, 00:10/00:11] install: natbib [17k]
+[72/92, 00:10/00:11] install: orcidlink [2k]
+[73/92, 00:10/00:11] install: pdfescape [5k]
+[74/92, 00:10/00:11] install: pdftexcmds [7k]
+[75/92, 00:10/00:11] install: pgf [701k]
+[76/92, 00:11/00:12] install: preprint [7k]
+[77/92, 00:11/00:12] install: psnfss [12k]
+[78/92, 00:11/00:12] install: refcount [3k]
+[79/92, 00:11/00:12] install: rerunfilecheck [4k]
+[80/92, 00:11/00:12] install: selnolig [53k]
+[81/92, 00:11/00:12] install: setspace [8k]
+[82/92, 00:11/00:12] install: stringenc [23k]
+[83/92, 00:11/00:12] install: symbol [36k]
+[84/92, 00:11/00:12] install: tcolorbox [228k]
+[85/92, 00:12/00:13] install: times [281k]
+[86/92, 00:12/00:12] install: tipa [2809k]
+[87/92, 00:12/00:12] install: tocloft [7k]
+[88/92, 00:12/00:12] install: unicode-math [42k]
+[89/92, 00:12/00:12] install: uniquecounter [3k]
+[90/92, 00:12/00:12] install: xcolor [18k]
+[91/92, 00:13/00:13] install: xunicode [26k]
+[92/92, 00:13/00:13] install: zapfding [46k]
+running mktexlsr ...
+done running mktexlsr.
+running updmap-sys ...
+done running updmap-sys.
+tlmgr: package log updated: /opt/texlive/texmf-var/web2c/tlmgr.log
+tlmgr: command log updated: /opt/texlive/texmf-var/web2c/tlmgr-commands.log
+--> cc45b0ee3f8e
+STEP 9/12: RUN R -q -e 'tinytex::r_texmf(action="add")'
+> tinytex::r_texmf(action="add")
+tlmgr conf auxtrees add '/usr/local/lib/R/share/texmf'
+> 
+> 
+--> 2c5808d49d32
+STEP 10/12: RUN rm -rf /var/lib/apt/lists/*     && rm -rf /tmp/*
+--> a0d5fcd65862
+STEP 11/12: WORKDIR /dockeruser
+--> 0f944144e96e
+STEP 12/12: CMD ["/bin/bash"]
+COMMIT rocker/r-min2:4.2.3
+--> 2921134c51cc
+Successfully tagged localhost/rocker/r-min2:4.2.3
+2921134c51cc5d26d4d1e8ef552227e24e282291683112860b8d726c67bb2aa9

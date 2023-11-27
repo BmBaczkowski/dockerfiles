@@ -1,0 +1,17 @@
+bookdown
+dplyr
+easystats
+extraDistr
+forcats
+knitr
+lme4
+MASS
+optparse
+purrr
+readr
+stringr
+tibble
+tidyr
+tidytext
+tinytex
+txtplot

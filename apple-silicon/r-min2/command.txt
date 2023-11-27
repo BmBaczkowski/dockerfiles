@@ -1,0 +1,1 @@
+podman build -t rocker/r-min2:4.2.3 . > build.log 2>&1
