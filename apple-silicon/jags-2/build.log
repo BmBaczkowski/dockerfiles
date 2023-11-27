@@ -1,0 +1,572 @@
+STEP 1/11: FROM rocker/r-ver:4.2.3
+STEP 2/11: RUN apt-get update && apt-get install -y wget
+--> Using cache 44e43840df00fa26b3853f941e915332fa1e37ff9115d02c376ef87d002fff62
+--> 44e43840df00
+STEP 3/11: RUN wget https://sourceforge.net/projects/mcmc-jags/files/JAGS/4.x/Source/JAGS-4.3.2.tar.gz    && tar xvzf JAGS-4.3.2.tar.gz    && rm JAGS-4.3.2.tar.gz
+--> Using cache 089a27274ff6fe147f29dbeb9e0db4f2565611be7631387b4afc104884aa2835
+--> 089a27274ff6
+STEP 4/11: WORKDIR /JAGS-4.3.2
+--> Using cache e59c11a330d54140299c00fd441b664f9a15fa7e765ef5d6bb3eba4fa443997e
+--> e59c11a330d5
+STEP 5/11: RUN ./configure    && make    && make install 
+--> Using cache 815c606e9da33cba7c9b031de21dcb28aa52979aceade6416ee039959c446221
+--> 815c606e9da3
+STEP 6/11: WORKDIR /dockeruser
+--> Using cache 46e50b7748f7e4efb5457883f2f56fbab870d11035634568edfb911c6652720a
+--> 46e50b7748f7
+STEP 7/11: RUN R -q -e 'install.packages("pak", repos=sprintf("https://r-lib.github.io/p/pak/stable/%s/%s/%s", .Platform$pkgType, R.Version()$os, R.Version()$arch))'
+--> Using cache c80bb01fd7ff31f87c26fd2595ae98421abfadb83f0872a6559d0b456b95c294
+--> c80bb01fd7ff
+STEP 8/11: COPY r-pkgs.txt /tmp/packages.txt
+--> 48773e466282
+STEP 9/11: RUN R -q -e 'pak::pkg_install(pkg=readLines("/tmp/packages.txt"))'
+> pak::pkg_install(pkg=readLines("/tmp/packages.txt"))
+
+✔ Updated metadata database: 2.24 MB in 8 files.
+
+ℹ Updating metadata database
+✔ Updating metadata database ... done
+
+ 
+→ Will install 102 packages.
+→ Will update 1 package.
+→ Will download 103 CRAN packages (96.50 MB).
++ abind                     1.4-5      [bld][dl] (21.81 kB)
++ backports                 1.4.1      [bld][cmp][dl] (26.20 kB)
++ bayesplot                 1.10.0     [bld][dl] (4.99 MB) + ✖ pandoc-citeproc, ✖ pandoc
++ bayestestR                0.13.1     [bld][dl] (896.89 kB)
++ BH                        1.81.0-1   [bld][dl] (13.94 MB)
++ bit                       4.0.5      [bld][cmp][dl] (827.75 kB)
++ bit64                     4.0.5      [bld][cmp][dl] (135.09 kB)
++ brio                      1.1.3      [bld][cmp][dl] (12.63 kB)
++ callr                     3.7.3      [bld][dl] (97.81 kB)
++ checkmate                 2.1.0      [bld][cmp][dl] (230.30 kB)
++ cli                       3.6.1      [bld][cmp][dl] (567.29 kB)
++ clipr                     0.8.0      [bld][dl] (21.90 kB)
++ coda                      0.19-4     [bld][dl] (74.24 kB)
++ colorspace                2.1-0      [bld][cmp][dl] (2.12 MB)
++ correlation               0.8.4      [bld][dl] (1.09 MB)
++ cpp11                     0.4.3      [bld][dl] (300.89 kB)
++ crayon                    1.5.2      [bld][dl] (40.57 kB)
++ datawizard                0.7.1      [bld][dl] (672.66 kB)
++ desc                      1.4.2      [bld][dl] (79.25 kB)
++ diffobj                   0.3.5      [bld][cmp][dl] (479.28 kB)
++ digest                    0.6.31     [bld][cmp][dl] (177.80 kB)
++ distributional            0.3.2      [bld][dl] (109.41 kB)
++ dplyr                     1.1.1      [bld][cmp][dl] (1.21 MB)
++ easystats                 0.6.0      [bld][dl] (1.75 MB)
++ effectsize                0.8.3      [bld][dl] (344.84 kB)
++ ellipsis                  0.3.2      [bld][cmp][dl] (8.07 kB)
++ evaluate                  0.20       [bld][dl] (28.35 kB)
++ extraDistr                1.9.1      [bld][cmp][dl] (147.89 kB)
++ fansi                     1.0.4      [bld][cmp][dl] (482.38 kB)
++ farver                    2.1.1      [bld][cmp][dl] (1.27 MB)
++ forcats                   1.0.0      [bld][dl] (294.18 kB)
++ fs                        1.6.1      [bld][cmp][dl] (1.19 MB) + ✔ make
++ generics                  0.1.3      [bld][dl] (172.20 kB)
++ ggeffects                 1.2.1      [bld][dl] (304.31 kB)
++ ggplot2                   3.4.2      [bld][dl] (3.16 MB)
++ ggridges                  0.5.4      [bld][dl] (2.22 MB)
++ glue                      1.6.2      [bld][cmp][dl] (106.51 kB)
++ gridExtra                 2.3        [bld][dl] (1.06 MB)
++ gtable                    0.3.3      [bld][dl] (130.10 kB)
++ hms                       1.1.3      [bld][dl] (43.38 kB)
++ inline                    0.3.19     [bld][dl] (25.07 kB)
++ insight                   0.19.1     [bld][dl] (939.20 kB)
++ isoband                   0.2.7      [bld][cmp][dl] (1.59 MB)
++ jsonlite                  1.8.4      [bld][cmp][dl] (1.05 MB)
++ labeling                  0.4.2      [bld][dl] (10.17 kB)
++ lifecycle                 1.0.3      [bld][dl] (107.66 kB)
++ lme4                      1.1-32     [bld][cmp][dl] (2.94 MB)
++ loo                       2.6.0      [bld][dl] (2.93 MB) + ✖ pandoc-citeproc, ✖ pandoc
++ magrittr                  2.0.3      [bld][cmp][dl] (267.07 kB)
++ MASS           7.3-58.2 → 7.3-58.3   [bld][cmp][dl] (561.53 kB)
++ matrixStats               0.63.0     [bld][cmp][dl] (210.75 kB)
++ MCMCvis                   0.15.5     [bld][dl] (4.28 MB)
++ minqa                     1.2.5      [bld][cmp][dl] (54.49 kB) + ✔ make
++ modelbased                0.8.6      [bld][dl] (1.46 MB)
++ munsell                   0.5.0      [bld][dl] (182.65 kB)
++ nloptr                    2.0.3      [bld][cmp][dl] (2.22 MB) + ✖ cmake
++ numDeriv                  2016.8-1.1 [bld][dl] (76.05 kB)
++ overlapping               2.1        [bld][dl] (18.22 kB)
++ parameters                0.21.0     [bld][dl] (669.69 kB)
++ performance               0.10.3     [bld][dl] (2.10 MB)
++ pillar                    1.9.0      [bld][dl] (444.53 kB)
++ pkgbuild                  1.4.0      [bld][dl] (46.95 kB)
++ pkgconfig                 2.0.3      [bld][dl] (6.08 kB)
++ pkgload                   1.3.2      [bld][dl] (77.93 kB)
++ plyr                      1.8.8      [bld][cmp][dl] (401.49 kB)
++ posterior                 1.4.1      [bld][dl] (429.29 kB)
++ praise                    1.0.0      [bld][dl] (6.10 kB)
++ prettyunits               1.1.1      [bld][dl] (97.50 kB)
++ processx                  3.8.1      [bld][cmp][dl] (163.56 kB)
++ progress                  1.2.2      [bld][dl] (29.51 kB)
++ ps                        1.7.5      [bld][cmp][dl] (129.21 kB)
++ purrr                     1.0.1      [bld][cmp][dl] (220.87 kB)
++ R6                        2.5.1      [bld][dl] (63.42 kB)
++ RColorBrewer              1.1-3      [bld][dl] (11.64 kB)
++ Rcpp                      1.0.10     [bld][cmp][dl] (2.99 MB)
++ RcppEigen                 0.3.3.9.3  [bld][cmp][dl] (1.45 MB)
++ RcppParallel              5.1.7      [bld][cmp][dl] (1.63 MB) + ✔ make
++ readr                     2.1.4      [bld][cmp][dl] (298.08 kB)
++ rematch2                  2.1.2      [bld][dl] (13.37 kB)
++ report                    0.5.7      [bld][dl] (1.88 MB)
++ reshape2                  1.4.4      [bld][cmp][dl] (37.31 kB)
++ rjags                     4-13       [bld][cmp][dl] (74.10 kB) + ✖ jags
++ rlang                     1.1.0      [bld][cmp][dl] (763.52 kB)
++ rprojroot                 2.0.3      [bld][dl] (59.95 kB)
++ rstan                     2.21.8     [bld][cmp][dl] (1.56 MB) + ✔ make, ✖ pandoc
++ scales                    1.2.1      [bld][dl] (270.61 kB)
++ see                       0.7.5      [bld][dl] (122.29 kB)
++ StanHeaders               2.21.0-7   [bld][cmp][dl] (2.35 MB) + ✔ make, ✖ pandoc
++ stringi                   1.7.12     [bld][cmp][dl] (11.92 MB) + ✖ libicu-dev
++ stringr                   1.5.0      [bld][dl] (176.60 kB)
++ tensorA                   0.36.2     [bld][cmp][dl] (47.31 kB)
++ testthat                  3.1.7      [bld][cmp][dl] (739.50 kB)
++ tibble                    3.2.1      [bld][cmp][dl] (565.98 kB)
++ tidyr                     1.3.0      [bld][cmp][dl] (823.55 kB)
++ tidyselect                1.2.0      [bld][dl] (101.50 kB)
++ txtplot                   1.0-4      [bld][dl] (11.63 kB)
++ tzdb                      0.3.0      [bld][cmp][dl] (586.33 kB)
++ utf8                      1.2.3      [bld][cmp][dl] (241.08 kB)
++ vctrs                     0.6.2      [bld][cmp][dl] (968.45 kB)
++ viridisLite               0.4.1      [bld][dl] (1.27 MB)
++ vroom                     1.6.1      [bld][cmp][dl] (750.20 kB)
++ waldo                     0.4.0      [bld][dl] (39.71 kB)
++ withr                     2.5.0      [bld][dl] (102.32 kB)
+→ Will install 5 system packages:
++ cmake            - nloptr                            
++ jags             - rjags                             
++ libicu-dev       - stringi                           
++ pandoc           - bayesplot, StanHeaders, loo, rstan
++ pandoc-citeproc  - bayesplot, loo                    
+ℹ Getting 103 pkgs (96.50 MB)
+✔ Got RColorBrewer 1.1-3 (source) (11.70 kB)
+✔ Got R6 2.5.1 (source) (64.15 kB)
+✔ Got generics 0.1.3 (source) (173.65 kB)
+✔ Got lifecycle 1.0.3 (source) (107.45 kB)
+✔ Got cli 3.6.1 (source) (565.37 kB)
+✔ Got Rcpp 1.0.10 (source) (2.94 MB)
+✔ Got gtable 0.3.3 (source) (132.02 kB)
+✔ Got numDeriv 2016.8-1.1 (source) (75.91 kB)
+✔ Got reshape2 1.4.4 (source) (37.88 kB)
+✔ Got checkmate 2.1.0 (source) (169.03 kB)
+✔ Got utf8 1.2.3 (source) (240.04 kB)
+✔ Got scales 1.2.1 (source) (272.40 kB)
+✔ Got correlation 0.8.4 (source) (1.10 MB)
+✔ Got withr 2.5.0 (source) (102.92 kB)
+✔ Got see 0.7.5 (source) (111.86 kB)
+✔ Got effectsize 0.8.3 (source) (339.17 kB)
+✔ Got forcats 1.0.0 (source) (296.12 kB)
+✔ Got desc 1.4.2 (source) (79.50 kB)
+✔ Got ellipsis 0.3.2 (source) (8.13 kB)
+✔ Got parameters 0.21.0 (source) (658.57 kB)
+✔ Got posterior 1.4.1 (source) (378.38 kB)
+✔ Got ps 1.7.5 (source) (129.78 kB)
+✔ Got processx 3.8.1 (source) (164.64 kB)
+✔ Got waldo 0.4.0 (source) (37.68 kB)
+✔ Got performance 0.10.3 (source) (2.11 MB)
+✔ Got praise 1.0.0 (source) (6.10 kB)
+✔ Got MASS 7.3-58.3 (source) (516.48 kB)
+✔ Got lme4 1.1-32 (source) (2.94 MB)
+✔ Got clipr 0.8.0 (source) (21.95 kB)
+✔ Got purrr 1.0.1 (source) (218.20 kB)
+✔ Got rjags 4-13 (source) (74.41 kB)
+✔ Got tibble 3.2.1 (source) (565.72 kB)
+✔ Got overlapping 2.1 (source) (18.41 kB)
+✔ Got RcppParallel 5.1.7 (source) (1.63 MB)
+✔ Got StanHeaders 2.21.0-7 (source) (1.39 MB)
+✔ Got digest 0.6.31 (source) (163.83 kB)
+✔ Got colorspace 2.1-0 (source) (2.11 MB)
+✔ Got distributional 0.3.2 (source) (109.79 kB)
+✔ Got bayestestR 0.13.1 (source) (911.05 kB)
+✔ Got vctrs 0.6.2 (source) (963.71 kB)
+✔ Got crayon 1.5.2 (source) (40.75 kB)
+✔ Got rlang 1.1.0 (source) (758.70 kB)
+✔ Got matrixStats 0.63.0 (source) (202.46 kB)
+✔ Got rematch2 2.1.2 (source) (13.44 kB)
+✔ Got rprojroot 2.0.3 (source) (61.65 kB)
+✔ Got diffobj 0.3.5 (source) (477.31 kB)
+✔ Got easystats 0.6.0 (source) (903.73 kB)
+✔ Got minqa 1.2.5 (source) (55.00 kB)
+✔ Got pkgload 1.3.2 (source) (76.29 kB)
+✔ Got dplyr 1.1.1 (source) (1.08 MB)
+✔ Got prettyunits 1.1.1 (source) (10.38 kB)
+✔ Got coda 0.19-4 (source) (73.86 kB)
+✔ Got evaluate 0.20 (source) (26.45 kB)
+✔ Got cpp11 0.4.3 (source) (305.11 kB)
+✔ Got testthat 3.1.7 (source) (706.82 kB)
+✔ Got hms 1.1.3 (source) (44.41 kB)
+✔ Got bit 4.0.5 (source) (828.76 kB)
+✔ Got readr 2.1.4 (source) (293.97 kB)
+✔ Got fansi 1.0.4 (source) (481.76 kB)
+✔ Got tidyr 1.3.0 (source) (818.82 kB)
+✔ Got pkgconfig 2.0.3 (source) (6.11 kB)
+✔ Got labeling 0.4.2 (source) (10.24 kB)
+✔ Got inline 0.3.19 (source) (25.36 kB)
+✔ Got pkgbuild 1.4.0 (source) (44.19 kB)
+✔ Got isoband 0.2.7 (source) (1.59 MB)
+✔ Got tidyselect 1.2.0 (source) (101.48 kB)
+✔ Got plyr 1.8.8 (source) (402.00 kB)
+✔ Got insight 0.19.1 (source) (924.72 kB)
+✔ Got tensorA 0.36.2 (source) (48.02 kB)
+✔ Got extraDistr 1.9.1 (source) (147.12 kB)
+✔ Got progress 1.2.2 (source) (29.75 kB)
+✔ Got RcppEigen 0.3.3.9.3 (source) (1.47 MB)
+✔ Got report 0.5.7 (source) (1.88 MB)
+✔ Got stringr 1.5.0 (source) (175.89 kB)
+✔ Got abind 1.4-5 (source) (21.89 kB)
+✔ Got farver 2.1.1 (source) (1.27 MB)
+✔ Got pillar 1.9.0 (source) (441.98 kB)
+✔ Got MCMCvis 0.15.5 (source) (4.16 MB)
+✔ Got fs 1.6.1 (source) (1.19 MB)
+✔ Got stringi 1.7.12 (source) (7.61 MB)
+✔ Got jsonlite 1.8.4 (source) (1.05 MB)
+✔ Got munsell 0.5.0 (source) (181.72 kB)
+✔ Got brio 1.1.3 (source) (12.70 kB)
+✔ Got tzdb 0.3.0 (source) (569.92 kB)
+✔ Got datawizard 0.7.1 (source) (482.02 kB)
+✔ Got viridisLite 0.4.1 (source) (1.27 MB)
+✔ Got ggridges 0.5.4 (source) (2.21 MB)
+✔ Got nloptr 2.0.3 (source) (2.22 MB)
+✔ Got bit64 4.0.5 (source) (135.85 kB)
+✔ Got txtplot 1.0-4 (source) (11.64 kB)
+✔ Got backports 1.4.1 (source) (25.96 kB)
+✔ Got vroom 1.6.1 (source) (718.76 kB)
+✔ Got magrittr 2.0.3 (source) (267.20 kB)
+✔ Got loo 2.6.0 (source) (2.93 MB)
+✔ Got ggeffects 1.2.1 (source) (263.99 kB)
+✔ Got ggplot2 3.4.2 (source) (3.14 MB)
+✔ Got modelbased 0.8.6 (source) (1.47 MB)
+✔ Got gridExtra 2.3 (source) (1.06 MB)
+✔ Got callr 3.7.3 (source) (98.16 kB)
+✔ Got rstan 2.21.8 (source) (1.18 MB)
+✔ Got glue 1.6.2 (source) (107.66 kB)
+✔ Got BH 1.81.0-1 (source) (13.84 MB)
+✔ Got bayesplot 1.10.0 (source) (4.98 MB)
+ℹ Installing system requirements
+ℹ Executing `sh -c apt-get -y update`
+ℹ Executing `sh -c apt-get -y install pandoc-citeproc pandoc libicu-dev cmake jags`
+ℹ Building R6 2.5.1
+ℹ Building RColorBrewer 1.1-3
+ℹ Building Rcpp 1.0.10
+ℹ Building abind 1.4-5
+ℹ Building backports 1.4.1
+ℹ Building cli 3.6.1
+✔ Built R6 2.5.1 (1.1s)
+ℹ Building colorspace 2.1-0
+✔ Built RColorBrewer 1.1-3 (1.3s)
+ℹ Building digest 0.6.31
+✔ Built abind 1.4-5 (1.3s)
+ℹ Building fansi 1.0.4
+✔ Built backports 1.4.1 (1.7s)
+ℹ Building farver 2.1.1
+✔ Built digest 0.6.31 (3.9s)
+ℹ Building generics 0.1.3
+✔ Built fansi 1.0.4 (4s)
+ℹ Building glue 1.6.2
+✔ Built generics 0.1.3 (1.1s)
+ℹ Building isoband 0.2.7
+✔ Built colorspace 2.1-0 (5.7s)
+ℹ Building labeling 0.4.2
+✔ Built glue 1.6.2 (1.5s)
+ℹ Building magrittr 2.0.3
+✔ Built labeling 0.4.2 (1.2s)
+ℹ Building matrixStats 0.63.0
+✔ Built magrittr 2.0.3 (1.2s)
+ℹ Building numDeriv 2016.8-1.1
+✔ Built cli 3.6.1 (9.1s)
+ℹ Building pkgconfig 2.0.3
+✔ Built numDeriv 2016.8-1.1 (1.2s)
+ℹ Building rlang 1.1.0
+✔ Built pkgconfig 2.0.3 (814ms)
+ℹ Building stringi 1.7.12
+✔ Built isoband 0.2.7 (5.5s)
+ℹ Building tensorA 0.36.2
+✔ Built tensorA 0.36.2 (1.6s)
+ℹ Building utf8 1.2.3
+✔ Built utf8 1.2.3 (3.3s)
+ℹ Building viridisLite 0.4.1
+✔ Built viridisLite 0.4.1 (972ms)
+ℹ Building withr 2.5.0
+✔ Built matrixStats 0.63.0 (10.3s)
+ℹ Building insight 0.19.1
+✔ Built withr 2.5.0 (1.4s)
+ℹ Building brio 1.1.3
+✔ Built brio 1.1.3 (1.2s)
+ℹ Building crayon 1.5.2
+✔ Built rlang 1.1.0 (11.8s)
+ℹ Building evaluate 0.20
+✔ Built crayon 1.5.2 (1.5s)
+ℹ Building fs 1.6.1
+✔ Built evaluate 0.20 (1.2s)
+ℹ Building jsonlite 1.8.4
+✔ Built farver 2.1.1 (23s)
+ℹ Building praise 1.0.0
+✔ Built praise 1.0.0 (878ms)
+ℹ Building ps 1.7.5
+✔ Built jsonlite 1.8.4 (3.9s)
+ℹ Building rprojroot 2.0.3
+✔ Built Rcpp 1.0.10 (27.6s)
+ℹ Building MASS 7.3-58.3
+✔ Built rprojroot 2.0.3 (1.1s)
+ℹ Building BH 1.81.0-1
+✔ Built insight 0.19.1 (15.3s)
+✔ Built ps 1.7.5 (8.1s)
+✔ Built MASS 7.3-58.3 (6.3s)
+ℹ Building RcppParallel 5.1.7
+ℹ Building coda 0.19-4
+ℹ Building inline 0.3.19
+✔ Built inline 0.3.19 (1.3s)
+ℹ Building prettyunits 1.1.1
+✔ Built prettyunits 1.1.1 (916ms)
+ℹ Building bit 4.0.5
+✔ Built coda 0.19-4 (2.6s)
+ℹ Building clipr 0.8.0
+✔ Built clipr 0.8.0 (907ms)
+ℹ Building cpp11 0.4.3
+✔ Built cpp11 0.4.3 (1s)
+ℹ Building txtplot 1.0-4
+✔ Built txtplot 1.0-4 (980ms)
+✔ Installed R6 2.5.1  (25ms)
+✔ Installed RColorBrewer 1.1-3  (1s)
+✔ Installed Rcpp 1.0.10  (156ms)
+ℹ Building plyr 1.8.8
+✔ Built bit 4.0.5 (5.5s)
+ℹ Building extraDistr 1.9.1
+✔ Built fs 1.6.1 (22.1s)
+ℹ Building RcppEigen 0.3.3.9.3
+✔ Built plyr 1.8.8 (8s)
+ℹ Building minqa 1.2.5
+✔ Built RcppParallel 5.1.7 (19.8s)
+✔ Installed abind 1.4-5  (23ms)
+✔ Installed backports 1.4.1  (45ms)
+ℹ Building checkmate 2.1.0
+✔ Built minqa 1.2.5 (8.1s)
+✔ Installed cli 3.6.1  (43ms)
+✔ Installed colorspace 2.1-0  (70ms)
+ℹ Building munsell 0.5.0
+✔ Built BH 1.81.0-1 (24.5s)
+✔ Installed digest 0.6.31  (30ms)
+✔ Built checkmate 2.1.0 (4.3s)
+✔ Installed fansi 1.0.4  (49ms)
+✔ Installed checkmate 2.1.0  (63ms)
+✔ Installed generics 0.1.3  (23ms)
+✔ Installed farver 2.1.1  (156ms)
+✔ Installed glue 1.6.2  (83ms)
+✔ Installed isoband 0.2.7  (66ms)
+✔ Installed labeling 0.4.2  (61ms)
+✔ Installed magrittr 2.0.3  (107ms)
+✔ Installed matrixStats 0.63.0  (92ms)
+ℹ Building loo 2.6.0
+✔ Built munsell 0.5.0 (1.3s)
+✔ Installed numDeriv 2016.8-1.1  (222ms)
+✔ Installed munsell 0.5.0  (27ms)
+✔ Installed pkgconfig 2.0.3  (27ms)
+✔ Installed plyr 1.8.8  (59ms)
+✔ Installed rlang 1.1.0  (63ms)
+ℹ Building lifecycle 1.0.3
+✔ Installed tensorA 0.36.2  (118ms)
+ℹ Building ellipsis 0.3.2
+✔ Built ellipsis 0.3.2 (1.3s)
+✔ Installed utf8 1.2.3  (28ms)
+✔ Built lifecycle 1.0.3 (1.5s)
+✔ Installed viridisLite 0.4.1  (47ms)
+✔ Installed lifecycle 1.0.3  (59ms)
+ℹ Building gtable 0.3.3
+✔ Installed withr 2.5.0  (119ms)
+ℹ Building scales 1.2.1
+✔ Built loo 2.6.0 (3.5s)
+ℹ Building vctrs 0.6.2
+✔ Built gtable 0.3.3 (1.7s)
+✔ Installed gtable 0.3.3  (106ms)
+ℹ Building gridExtra 2.3
+✔ Built scales 1.2.1 (3.3s)
+✔ Built gridExtra 2.3 (1.6s)
+✔ Installed scales 1.2.1  (68ms)
+✔ Installed insight 0.19.1  (64ms)
+ℹ Building datawizard 0.7.1
+✔ Installed brio 1.1.3  (170ms)
+ℹ Building ggeffects 1.2.1
+✔ Built ggeffects 1.2.1 (3.6s)
+✔ Installed ggeffects 1.2.1  (58ms)
+✔ Installed crayon 1.5.2  (23ms)
+ℹ Building diffobj 0.3.5
+✔ Built datawizard 0.7.1 (4.5s)
+✔ Built stringi 1.7.12 (58s)
+✔ Installed datawizard 0.7.1  (66ms)
+ℹ Building bayestestR 0.13.1
+✔ Installed stringi 1.7.12  (124ms)
+✔ Installed ellipsis 0.3.2  (21ms)
+✔ Installed evaluate 0.20  (28ms)
+✔ Installed fs 1.6.1  (48ms)
+✔ Installed jsonlite 1.8.4  (47ms)
+✔ Installed minqa 1.2.5  (31ms)
+✔ Installed praise 1.0.0  (36ms)
+✔ Installed ps 1.7.5  (29ms)
+ℹ Building processx 3.8.1
+✔ Built processx 3.8.1 (3.9s)
+✔ Installed processx 3.8.1  (30ms)
+ℹ Building callr 3.7.3
+✔ Built bayestestR 0.13.1 (5.3s)
+✔ Installed bayestestR 0.13.1  (49ms)
+ℹ Building parameters 0.21.0
+✔ Built diffobj 0.3.5 (6.5s)
+ℹ Building performance 0.10.3
+✔ Built callr 3.7.3 (3.3s)
+✔ Installed callr 3.7.3  (30ms)
+✔ Installed diffobj 0.3.5  (33ms)
+✔ Installed rprojroot 2.0.3  (24ms)
+ℹ Building desc 1.4.2
+✔ Built desc 1.4.2 (2.1s)
+✔ Installed desc 1.4.2  (33ms)
+ℹ Building pkgload 1.3.2
+✔ Built vctrs 0.6.2 (18.9s)
+✔ Installed vctrs 0.6.2  (65ms)
+ℹ Building pillar 1.9.0
+✔ Built pkgload 1.3.2 (1.9s)
+ℹ Building tidyselect 1.2.0
+✔ Built performance 0.10.3 (7.8s)
+ℹ Building purrr 1.0.1
+✔ Built tidyselect 1.2.0 (1.9s)
+ℹ Building hms 1.1.3
+✔ Built pillar 1.9.0 (3.5s)
+ℹ Building stringr 1.5.0
+✔ Built hms 1.1.3 (1.3s)
+✔ Installed pillar 1.9.0  (62ms)
+ℹ Building tibble 3.2.1
+✔ Built RcppEigen 0.3.3.9.3 (41.5s)
+✔ Installed tidyselect 1.2.0  (49ms)
+✔ Installed performance 0.10.3  (63ms)
+✔ Installed RcppEigen 0.3.3.9.3  (321ms)
+✔ Built parameters 0.21.0 (12s)
+✔ Installed pkgload 1.3.2  (84ms)
+✔ Built purrr 1.0.1 (3.7s)
+✔ Installed parameters 0.21.0  (86ms)
+ℹ Building correlation 0.8.4
+✔ Installed MASS 7.3-58.3  (207ms)
+ℹ Building effectsize 0.8.3
+✔ Built stringr 1.5.0 (2s)
+✔ Installed RcppParallel 5.1.7  (1.1s)
+ℹ Building StanHeaders 2.21.0-7
+✔ Built tibble 3.2.1 (3.7s)
+✔ Installed BH 1.81.0-1  (2s)
+✔ Installed coda 0.19-4  (29ms)
+ℹ Building rjags 4-13
+✔ Built correlation 0.8.4 (2.3s)
+✔ Installed gridExtra 2.3  (277ms)
+✔ Installed inline 0.3.19  (23ms)
+✔ Installed correlation 0.8.4  (82ms)
+✔ Installed loo 2.6.0  (65ms)
+✔ Installed prettyunits 1.1.1  (58ms)
+ℹ Building pkgbuild 1.4.0
+✔ Installed purrr 1.0.1  (126ms)
+✔ Installed bit 4.0.5  (56ms)
+ℹ Building bit64 4.0.5
+✔ Built effectsize 0.8.3 (3.5s)
+✔ Installed effectsize 0.8.3  (37ms)
+ℹ Building modelbased 0.8.6
+✔ Built pkgbuild 1.4.0 (1.9s)
+ℹ Building report 0.5.7
+✔ Built modelbased 0.8.6 (2s)
+✔ Installed modelbased 0.8.6  (61ms)
+✔ Installed pkgbuild 1.4.0  (25ms)
+✔ Installed clipr 0.8.0  (23ms)
+✔ Installed cpp11 0.4.3  (34ms)
+ℹ Building tzdb 0.3.0
+✔ Built rjags 4-13 (5.9s)
+✔ Installed hms 1.1.3  (38ms)
+ℹ Building progress 1.2.2
+✔ Built bit64 4.0.5 (5.6s)
+✔ Installed bit64 4.0.5  (93ms)
+✔ Installed rjags 4-13  (66ms)
+✔ Installed stringr 1.5.0  (30ms)
+ℹ Building reshape2 1.4.4
+✔ Built report 0.5.7 (4.2s)
+✔ Installed report 0.5.7  (45ms)
+✔ Installed tibble 3.2.1  (42ms)
+ℹ Building ggplot2 3.4.2
+✔ Built progress 1.2.2 (1.6s)
+ℹ Building dplyr 1.1.1
+✔ Built StanHeaders 2.21.0-7 (14.4s)
+ℹ Building forcats 1.0.0
+✔ Built reshape2 1.4.4 (8.3s)
+ℹ Building rematch2 2.1.2
+✔ Built tzdb 0.3.0 (11.5s)
+✔ Installed reshape2 1.4.4  (33ms)
+✔ Installed StanHeaders 2.21.0-7  (154ms)
+✔ Installed progress 1.2.2  (22ms)
+✔ Built dplyr 1.1.1 (8s)
+✔ Installed tzdb 0.3.0  (91ms)
+ℹ Building vroom 1.6.1
+✔ Installed dplyr 1.1.1  (226ms)
+ℹ Building tidyr 1.3.0
+✔ Built forcats 1.0.0 (2.1s)
+✔ Installed forcats 1.0.0  (49ms)
+✔ Built rematch2 2.1.2 (1.5s)
+✔ Installed txtplot 1.0-4  (45ms)
+✔ Installed rematch2 2.1.2  (44ms)
+ℹ Building waldo 0.4.0
+✔ Built waldo 0.4.0 (1.6s)
+✔ Installed waldo 0.4.0  (20ms)
+ℹ Building testthat 3.1.7
+✔ Built ggplot2 3.4.2 (11.3s)
+✔ Installed ggplot2 3.4.2  (76ms)
+ℹ Building distributional 0.3.2
+ℹ Building ggridges 0.5.4
+✔ Built ggridges 0.5.4 (3s)
+ℹ Building see 0.7.5
+✔ Built distributional 0.3.2 (3.5s)
+ℹ Building rstan 2.21.8
+✔ Built tidyr 1.3.0 (7.7s)
+✔ Installed distributional 0.3.2  (44ms)
+ℹ Building posterior 1.4.1
+✔ Built see 0.7.5 (4.4s)
+✔ Installed ggridges 0.5.4  (54ms)
+✔ Installed see 0.7.5  (32ms)
+ℹ Building easystats 0.6.0
+✔ Built posterior 1.4.1 (4.7s)
+✔ Installed posterior 1.4.1  (34ms)
+ℹ Building bayesplot 1.10.0
+✔ Built easystats 0.6.0 (2.6s)
+✔ Installed easystats 0.6.0  (35ms)
+✔ Installed tidyr 1.3.0  (52ms)
+✔ Built bayesplot 1.10.0 (5.2s)
+✔ Installed bayesplot 1.10.0  (82ms)
+✔ Built testthat 3.1.7 (21.7s)
+✔ Installed testthat 3.1.7  (114ms)
+ℹ Building nloptr 2.0.3
+ℹ Building overlapping 2.1
+✔ Built overlapping 2.1 (1.7s)
+✔ Installed overlapping 2.1  (16ms)
+✔ Built nloptr 2.0.3 (29.4s)
+✔ Installed nloptr 2.0.3  (103ms)
+ℹ Building lme4 1.1-32
+✔ Built vroom 1.6.1 (1m 3.7s)
+✔ Installed vroom 1.6.1  (196ms)
+ℹ Building readr 2.1.4
+✔ Built readr 2.1.4 (29.3s)
+✔ Installed readr 2.1.4  (92ms)
+✔ Built lme4 1.1-32 (40.5s)
+✔ Installed lme4 1.1-32  (225ms)
+✔ Built extraDistr 1.9.1 (2m 50.1s)
+✔ Installed extraDistr 1.9.1  (1.2s)
+✔ Built rstan 2.21.8 (6m 8.8s)
+✔ Installed rstan 2.21.8  (1.8s)
+ℹ Building MCMCvis 0.15.5
+✔ Built MCMCvis 0.15.5 (2.1s)
+✔ Installed MCMCvis 0.15.5  (44ms)
+✔ 16 pkgs + 92 deps: kept 3, upd 1, added 102, dld 103 (88.99 MB) [8m 34s]
+Warning message:
+In readLines("/tmp/packages.txt") :
+  incomplete final line found on '/tmp/packages.txt'
+> 
+> 
+--> 4da894db5d27
+STEP 10/11: RUN rm -rf /var/lib/apt/lists/*     && rm -fr /JAGS-4.3.2     && rm -rf /tmp/*
+--> 6d1ebd0f599d
+STEP 11/11: CMD ["/bin/bash"]
+COMMIT rocker/jags-2:4.2.3
+--> 09f808cdd323
+Successfully tagged localhost/rocker/jags-2:4.2.3
+09f808cdd323ea4f50bf15b4fcb1d2c7f03381582f965cb80ec545b891290100

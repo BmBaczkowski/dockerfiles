@@ -1,0 +1,16 @@
+bayesplot
+dplyr
+easystats
+extraDistr
+forcats
+ggeffects
+lme4
+MASS
+MCMCvis
+purrr
+readr
+rjags
+stringr
+tibble
+tidyr
+txtplot
