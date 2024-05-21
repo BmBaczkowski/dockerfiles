@@ -1,0 +1,4 @@
+extraDistr@1.10.0
+rjags@4-15
+tidyverse@2.0.0
+txtplot@1.0-4
